@@ -24,6 +24,7 @@ function App() {
           <Route path="/admin" component={Admin } />
         </Router>
       </Provider>
+    <p>test deployment</p>
     </div>
   );
 }
