@@ -179,7 +179,6 @@ class Home extends React.Component {
 
                         <hr />
                     </MDBContainer>
-                    <p>test deployment</p>
                 </div>
                 {this.renderRedirect()}
                 {this.state.reponse.length > 0 ? this.state.reponse.map((art) => {
