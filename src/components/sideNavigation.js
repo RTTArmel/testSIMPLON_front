@@ -7,32 +7,37 @@ const TopNavigation = () => {
     return (
         <div className="sidebar-fixed position-fixed">
             <a href="#!" className="logo-wrapper waves-effect">
-                <img alt="MDB React Logo" className="img-fluid" src={logo}/>
+                <img alt="MDB React Logo" className="img-fluid" src={logo} />
             </a>
             <MDBListGroup className="list-group-flush" id="lien-dasboard-total">
-                <NavLink id="lien-dasboard" exact={true} to="/">
+                <NavLink id="lien-dasboard" to="/admin/monProfil" >
                     <MDBListGroupItem>
-                        <MDBIcon icon="chart-pie" className="mr-3"/>
-                        Dashboard
+                        <MDBIcon icon="user" className="mr-3" />
+                        Mon Profil
                     </MDBListGroupItem>
                 </NavLink>
-                <NavLink id="lien-dasboard" to="/actualites" >
+
+                <NavLink id="lien-dasboard" exact={true} to="/admin/upload">
                     <MDBListGroupItem>
-                        <MDBIcon icon="user" className="mr-3"/>
-                      Ajout Actualités
+                        <MDBIcon icon="download" className="mr-3" />
+                        Ajouter Article
                     </MDBListGroupItem>
                 </NavLink>
-                <NavLink  id="lien-dasboard" to="/medicament" >
+
+                <NavLink id="lien-dasboard" to="/admin/article" >
                     <MDBListGroupItem>
-                        Ajout Medicaments
+                        <MDBIcon icon="clipboard-list" className="mr-3" />
+                        Liste des Articles
                     </MDBListGroupItem>
                 </NavLink>
-                <NavLink id="lien-dasboard" to="/protection">
+
+                <NavLink id="lien-dasboard" to="/" >
                     <MDBListGroupItem>
-                        <MDBIcon icon="map" className="mr-3"/>
-                      Ajout Protéction
+                        <MDBIcon icon="home" className="mr-3" />
+                        Accueil ExtraComm
                     </MDBListGroupItem>
                 </NavLink>
+
             </MDBListGroup>
         </div>
     );

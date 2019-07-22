@@ -7,21 +7,25 @@ import Login from './components/login'
 import Register from './components/register'
 import { Provider } from 'react-redux'
 import Store from './store/configureStore'
-import DashBoard from './components/dashBoard'
 import Article from './components/article'
 import Admin from './components/admin'
-
+import Upload from './components/postupload'
 function App() {
   return (
     <div className="">
       <Provider store={Store}>
         <Router>
-          <Route exact path="/" component={Accueil} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route path="/dashboard" component={DashBoard} />
-          <Route path="/article/:id" component={Article } />
-          <Route path="/admin" component={Admin } />
+          <div>
+            <Route exact path="/" component={Accueil} />
+            <div className="container">
+              <Route path="/login" component={Login} />
+              <Route path="/register" component={Register} />
+              {/* <Route path="/article/:id" component={Article } /> */}
+              <Route path="/admin" component={Admin} />
+              <Route path="/upload" component={Upload} />
+              <Route path="/article" component={Article} />
+            </div>
+          </div>
         </Router>
       </Provider>
     <p>test deployment</p>

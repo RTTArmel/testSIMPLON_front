@@ -1,16 +1,38 @@
 import React, { Component } from 'react';
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 class TopNavigation extends Component {
+
+    constructor(props) {
+        super(props);
+        this.deconnection = this.deconnection.bind(this)
+        this.renderRedirect = this.renderRedirect.bind(this)
+    }
     state = {
-        collapse: false
+        collapse: true
+    }
+
+    renderRedirect = () => {
+        if (localStorage.getItem('login') == 'false') {
+            return <Redirect to='/login' />
+        } else {
+            console.log('test');
+        }
+    }
+
+    deconnection(e) {
+        console.log('local deconnection: ', localStorage.getItem('login'));
+        const action = { type: "DECONNECT", value: e }
+        this.props.dispatch(action)
     }
 
     onClick = () => {
         this.setState({
             collapse: !this.state.collapse,
         });
-    }   
+    }
 
     toggle = () => {
         this.setState({
@@ -21,28 +43,26 @@ class TopNavigation extends Component {
     render() {
         return (
             <MDBNavbar className="flexible-navbar" light expand="md" scrolling>
-                <MDBNavbarBrand href="/">
-                    <strong>ExtrActu</strong>
+                <MDBNavbarBrand>
+                    {this.renderRedirect()}
+                    <strong>Bonjour {localStorage.getItem('user')}</strong>
                 </MDBNavbarBrand>
-                <MDBNavbarToggler onClick = { this.onClick } />
-                <MDBCollapse isOpen = { this.state.collapse } navbar>
-                    <MDBNavbarNav right>
-                        <MDBNavItem active>
-                            <MDBNavLink to="#">Home</MDBNavLink>
-                        </MDBNavItem>
+                <MDBNavbarToggler onClick={this.onClick} />
+                <MDBCollapse isOpen={this.state.collapse} navbar>
+                    <MDBNavbarNav left>
                         <MDBNavItem>
-                            <a rel="noopener noreferrer" className="nav-link Ripple-parent" href="#dashboard" target="_blank">Medicaments</a>
-                        </MDBNavItem>
-                        <MDBNavItem>
-                            <a rel="noopener noreferrer"  className="nav-link Ripple-parent" href="#dashboard" target="_blank">Protections</a>
+                            <a className="nav-link navbar-link nom-user">Bonjour {localStorage.getItem('user')}</a>
                         </MDBNavItem>
                     </MDBNavbarNav>
                     <MDBNavbarNav right>
-                        <MDBNavItem>
-                            <a className="nav-link navbar-link" rel="noopener noreferrer" target="_blank" href="https://pl-pl.facebook.com/mdbootstrap/"><MDBIcon fab icon="facebook" /></a>
+                        <MDBNavItem onClick={() => {this.deconnection()}}>
+                            <MDBNavLink rel="noopener noreferrer" className="nav-link Ripple-parent" href="/login">Deconnexion</MDBNavLink>
                         </MDBNavItem>
                         <MDBNavItem>
-                            <a className="nav-link navbar-link" rel="noopener noreferrer" target="_blank" href="https://twitter.com/mdbootstrap"><MDBIcon fab icon="twitter" /></a>
+                            <a className="nav-link navbar-link" rel="noopener noreferrer" href="https://pl-pl.facebook.com/mdbootstrap/"><MDBIcon fab icon="facebook" /></a>
+                        </MDBNavItem>
+                        <MDBNavItem>
+                            <a className="nav-link navbar-link" rel="noopener noreferrer" href="https://twitter.com/mdbootstrap"><MDBIcon fab icon="twitter" /></a>
                         </MDBNavItem>
                     </MDBNavbarNav>
                 </MDBCollapse>
@@ -50,5 +70,9 @@ class TopNavigation extends Component {
         );
     }
 }
-
-export default TopNavigation;
+const mapStateToProps = (state) => {
+    return {
+        client: state
+    }
+}
+export default connect(mapStateToProps)(TopNavigation);

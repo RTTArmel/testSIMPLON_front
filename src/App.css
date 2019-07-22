@@ -1,6 +1,11 @@
 .App {
   text-align: center;
 }
+ .homePage{
+background-image: url('./images/téléchargement.jpeg');
+background-size: contain;
+background-repeat: repeat-y;
+ }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -19,6 +24,11 @@
   color: white;
 }
 
+.nom-user{
+  margin-left: 60%;
+  font-weight: bolder;
+  }
+
 .App-link {
   color: #61dafb;
 }
@@ -33,11 +43,9 @@
 }
 
 #Totalhome {
-  background-color: #006064 !important;
+  background-color: #e7695a !important;
 }
-#slide {
-  margin-top: 5px;
-}
+
 #h3slide {
   font-weight: bold;
 }
