@@ -59,15 +59,15 @@ class PostFrontToBack extends React.Component {
         data.append('prix', this.state.prix);
         data.append('utilisateur', localStorage.getItem('id'))
 
-        fetch('http://localhost:8080/profil', {
+        fetch('https://tsioryraz.herokuapp.com/profil', {
             method: 'POST',
             body: data,
         }).then((response) => {
             response.json().then((body) => {
                 this.setState({
-                    image: `http://localhost:8080/profil/${body.image}`,
-                    image1: `http://localhost:8080/profil/${body.image1}`,
-                    image2: `http://localhost:8080/profil/${body.image2}`
+                    image: `https://tsioryraz.herokuapp.com/${body.image}`,
+                    image1: `https://tsioryraz.herokuapp.com/${body.image1}`,
+                    image2: `https://tsioryraz.herokuapp.com/${body.image2}`
                 });
                 console.log('ity ilay body.fil', body.image);
             });
