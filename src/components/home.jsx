@@ -33,7 +33,7 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        axios.get("https://tsiorytahback.herokuapp.com/profil").then(res => {
+        axios.get("http://tsiorytahback.herokuapp.com/profil").then(res => {
         // axios.get("http://localhost:8080/profil").then(res => {
             console.log('res comment: ', res.data)
             this.setState({ comment: res.data })
@@ -166,9 +166,9 @@ class Home extends React.Component {
                                                                     {/* <img class="card-img-top img-thumbnail sary" src={"http://localhost:8080/profil/" + article.image} alt={article.titre} /><br />
                                                                     <img class="card-img-top img-thumbnail sary1" src={"http://localhost:8080/profil/" + article.image1} alt={article.titre} />
                                                                     <img class="card-img-top img-thumbnail sary1" src={"http://localhost:8080/profil/" + article.image2} alt={article.titre} /> */}
-                                                                    <img class="card-img-top img-thumbnail sary" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image} alt={article.titre} /><br />
-                                                                    <img class="card-img-top img-thumbnail sary1" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image1} alt={article.titre} />
-                                                                    <img class="card-img-top img-thumbnail sary1" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image2} alt={article.titre} />
+                                                                    <img class="card-img-top img-thumbnail sary" src={"http://tsiorytahback.herokuapp.com/profil/" + article.image} alt={article.titre} /><br />
+                                                                    <img class="card-img-top img-thumbnail sary1" src={"http://tsiorytahback.herokuapp.com/profil/" + article.image1} alt={article.titre} />
+                                                                    <img class="card-img-top img-thumbnail sary1" src={"http://tsiorytahback.herokuapp.com/profil/" + article.image2} alt={article.titre} />
                                                                 </td>
                                                                 <td>
                                                                     <h6 className="text-pop">Suppression du Produit: </h6><br />
@@ -187,7 +187,7 @@ class Home extends React.Component {
                                             }
                                         })
                                     }
-                                        }><img class="card-img-top img-thumbnail" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image} alt={article.titre} /></button>
+                                        }><img class="card-img-top img-thumbnail" src={"http://tsiorytahback.herokuapp.com/profil/" + article.image} alt={article.titre} /></button>
                                     {/* }><img class="card-img-top img-thumbnail" src={"http://localhost:8080/profil/" + article.image} alt={article.titre} /></button> */}
                                     <div class="card-body">
                                         <center>
