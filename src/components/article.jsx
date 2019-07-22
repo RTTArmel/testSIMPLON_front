@@ -35,7 +35,8 @@ class Article extends React.Component {
         var tab = []
         console.log('props: ', this.props)
         axios.get("https://tsiorytahback.herokuapp.com/profil").then(res => {
-            console.log('res comment: ', res.data)
+            // axios.get("http://localhost:8080/profil").then(res => {
+                console.log('res comment: ', res.data)
             for (let i = 0; i < res.data.length; i++) {
                 if (localStorage.getItem('id') == res.data[i].utilisateur) {
                     tab.push(res.data[i])
@@ -58,7 +59,8 @@ class Article extends React.Component {
                             this.state.comment.sort((a, b) => { return b._id - a._id }).map((user, _id) => (
                                 <tr key={_id}>
                                     <td>
-                                        <p id="titre" onChange={this.handleChange}><img class="card-img-top img-thumbnail image" src={"http://localhost:8080/profil/" + user.image} alt={user.titre} /></p>
+                                    <p id="titre" onChange={this.handleChange}><img class="card-img-top img-thumbnail image" src={"https://tsiorytahback.herokuapp.com/profil/" + user.image} alt={user.titre} /></p>
+                                        {/* <p id="titre" onChange={this.handleChange}><img class="card-img-top img-thumbnail image" src={"http://localhost:8080/profil/" + user.image} alt={user.titre} /></p> */}
                                         <p id="prix" style={{textAlign: "right"}} onChange={this.handleChange}>Prix: {user.prix}</p>
                                     </td>
                                     <td>
@@ -75,6 +77,7 @@ class Article extends React.Component {
                                                                     <div className="custom-ui" id="popup">
                                                                         <table>
                                                                             <td>
+                                                                                {/* <img class="card-img-top img-thumbnail sary" src={"http://localhost:8080/profil/" + user.image} alt={user.titre} /><br /> */}
                                                                                 <img class="card-img-top img-thumbnail sary" src={"https://tsiorytahback.herokuapp.com/profil/" + user.image} alt={user.titre} /><br />
                                                                             </td>
                                                                             <td>
@@ -84,7 +87,6 @@ class Article extends React.Component {
                                                                         </table>
                                                                         <button className="btn btn-dark"
                                                                             onClick={() => {
-                                                                                // props.deleteUser(user.id); //Appel de la fonction deleteUser App.js
                                                                                 onClose();
                                                                             }}
                                                                         >
@@ -122,8 +124,6 @@ class Article extends React.Component {
                                                                                     } else {
                                                                                         valid = "";
                                                                                         document.getElementById('e').innerHTML = valid;
-                                                                                        // props.updateUser(user.prix, user) //Appel de la fonction updateUser App.js
-                                                                                        // props.editRow(user.id); //Appel de la fonction editRow App.js
                                                                                         onClose();
                                                                                     }
                                                                                 }

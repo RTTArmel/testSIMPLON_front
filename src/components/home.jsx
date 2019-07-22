@@ -34,6 +34,7 @@ class Home extends React.Component {
 
     componentDidMount() {
         axios.get("https://tsiorytahback.herokuapp.com/profil").then(res => {
+        // axios.get("http://localhost:8080/profil").then(res => {
             console.log('res comment: ', res.data)
             this.setState({ comment: res.data })
             console.log('comment: ', this.state.comment)
@@ -56,7 +57,7 @@ class Home extends React.Component {
                                 <img src="../images/logo.png" id="logo-header" alt="imagelogo" />
                                 <strong className="white-text">ExtraComm</strong>
                             </MDBNavbarBrand>
-                            <MDBNavbarToggler/>
+                            <MDBNavbarToggler />
                             <MDBCollapse
                                 id="navbarCollapse"
                                 isOpen={this.state.collapseID}
@@ -162,6 +163,9 @@ class Home extends React.Component {
                                                         <div className="custom-ui" id="popup">
                                                             <table>
                                                                 <td>
+                                                                    {/* <img class="card-img-top img-thumbnail sary" src={"http://localhost:8080/profil/" + article.image} alt={article.titre} /><br />
+                                                                    <img class="card-img-top img-thumbnail sary1" src={"http://localhost:8080/profil/" + article.image1} alt={article.titre} />
+                                                                    <img class="card-img-top img-thumbnail sary1" src={"http://localhost:8080/profil/" + article.image2} alt={article.titre} /> */}
                                                                     <img class="card-img-top img-thumbnail sary" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image} alt={article.titre} /><br />
                                                                     <img class="card-img-top img-thumbnail sary1" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image1} alt={article.titre} />
                                                                     <img class="card-img-top img-thumbnail sary1" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image2} alt={article.titre} />
@@ -183,7 +187,8 @@ class Home extends React.Component {
                                             }
                                         })
                                     }
-                                    }><img class="card-img-top img-thumbnail" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image} alt={article.titre} /></button>
+                                        }><img class="card-img-top img-thumbnail" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image} alt={article.titre} /></button>
+                                    {/* }><img class="card-img-top img-thumbnail" src={"http://localhost:8080/profil/" + article.image} alt={article.titre} /></button> */}
                                     <div class="card-body">
                                         <center>
                                             <h5 class="card-title">{article.titre}</h5>

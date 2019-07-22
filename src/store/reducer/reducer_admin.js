@@ -16,8 +16,8 @@ function connexion(state = initialState, action) {
     //postAdmin 8080
     case 'REGISTER':
       console.log("action: ", action.value);
-      //axios.post('https://shrouded-shore-94366.herokuapp.com/', action.value)
-      axios.post('https://tsiorytahback.herokuapp.com/register/', action.value)
+      axios.post('http://tsiorytahback.herokuapp.com/register/', action.value)
+        // axios.post('http://localhost:8080/register/', action.value)
         .then((response) => {
           console.log("post ok: res.data ", response.data);
           localStorage.setItem('id', parseInt(response.data._id))
@@ -30,10 +30,10 @@ function connexion(state = initialState, action) {
         });
       break;
 
-      case 'EDIT_PROFIL':
+    case 'EDIT_PROFIL':
       console.log("action: ", action.value);
-      //axios.post('https://shrouded-shore-94366.herokuapp.com/', action.value)
-      axios.put("https://tsiorytahback.herokuapp.com/register/"+localStorage.getItem('id'), action.value)
+           axios.post('https://tsiorytahback.herokuapp.com/register/'+ localStorage.getItem('id'), action.value)
+      // axios.put("http://localhost:8080/register/" + localStorage.getItem('id'), action.value)
         .then((response) => {
           console.log("put ok: res.data ", response.data);
           localStorage.setItem('user', response.data[localStorage.getItem('id')].nom)
@@ -47,8 +47,8 @@ function connexion(state = initialState, action) {
     //postLogin 8080
     case 'LOGIN':
       console.log("action: ", action.value);
-      //axios.post('https://shrouded-shore-94366.herokuapp.com/', action.value)
-      axios.post('https://tsiorytahback.herokuapp.com/login', action.value)      
+           axios.post('https://tsiorytahback.herokuapp.com/login/', action.value)
+      // axios.post('http://localhost:8080/login', action.value)
         .then((response) => {
           if (response.data.nom == action.value.nom) {
             localStorage.setItem('id', response.data._id)
@@ -67,11 +67,11 @@ function connexion(state = initialState, action) {
       localStorage.setItem('login', 'false');
       break;
 
-      
+
 
     case 'GETARTICLE':
-      //axios.get('https://shrouded-shore-94366.herokuapp.com/')
-      axios.get('https://tsiorytahback.herokuapp.com/')
+           axios.post('https://tsiorytahback.herokuapp.com/')
+      // axios.get('http://localhost:8080/')
         .then(function (response) {
           nextState = response.data
           console.log("ttt", nextState);
