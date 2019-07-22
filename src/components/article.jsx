@@ -34,7 +34,7 @@ class Article extends React.Component {
     componentDidMount() {
         var tab = []
         console.log('props: ', this.props)
-        axios.get("http://localhost:8080/profil").then(res => {
+        axios.get("https://tsioryraz.herokuapp.com/profil").then(res => {
             console.log('res comment: ', res.data)
             for (let i = 0; i < res.data.length; i++) {
                 if (localStorage.getItem('id') == res.data[i].utilisateur) {
@@ -152,45 +152,6 @@ class Article extends React.Component {
                     </tbody>
                 </table>
             </center>
-
-
-
-
-
-            // <div className='container'>
-            //     <div className='row'>
-            //         {this.state.comment.length > 0 ? (this.state.comment.sort((a, b) => { return b._id - a._id }).map((article, _id) => (
-            //                 <div className='col-md-5 carte' key={_id}>
-            //                     <div className="card">
-            //                         <button onClick={this.toggle}><img class="card-img-top img-thumbnail" src={"http://localhost:8080/profil/" + article.image} alt={article.titre} /></button>
-            //                         <div class="card-body">
-            //                             <center>
-            //                                 <h5 class="card-title">{article.titre}</h5>
-            //                                 <p class="test">{article.prix}</p>
-            //                             </center>
-            //                         </div>
-            //                         <MDBContainer  key={_id}>
-            //                             <MDBModal isOpen={this.state.modal}>
-            //                                 <MDBModalHeader>{this.props.titre}</MDBModalHeader>
-            //                                 <MDBModalBody>
-            //                                     <center>
-            //                                         <img class="card-img-top img-thumbnail" src={"http://localhost:8080/profil/" + article.image} alt={article.titre} />
-            //                                         <p>{article.description}</p>
-            //                                         <p>{article.prix}</p>
-            //                                     </center>
-            //                                 </MDBModalBody>
-            //                                 <MDBModalFooter>
-            //                                     <MDBBtn color="secondary" onClick={() => { this.toggle() }}>Close</MDBBtn>
-            //                                 </MDBModalFooter>
-            //                             </MDBModal>
-            //                         </MDBContainer>
-            //                     </div>
-            //                     <br />
-            //                 </div>
-            //         )
-            //         )) : ''}
-            //     </div>
-            // </div>
         )
     }
 }
