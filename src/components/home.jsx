@@ -25,11 +25,6 @@ class Home extends React.Component {
         });
     }
 
-    // toggleCollapse = collapseID => () =>
-    //     this.setState(prevState => ({
-    //         collapseID: prevState.collapseID !== collapseID ? collapseID : ""
-    //     }));
-
     renderRedirect = () => {
         if (this.state.redirect) {
             var url = '/article/' + this.state._id
@@ -38,7 +33,7 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        axios.get("http://localhost:8080/profil").then(res => {
+        axios.get("https://tsioryraz.herokuapp.com/profil").then(res => {
             console.log('res comment: ', res.data)
             this.setState({ comment: res.data })
             console.log('comment: ', this.state.comment)
@@ -61,9 +56,7 @@ class Home extends React.Component {
                                 <img src="../images/logo.png" id="logo-header" alt="imagelogo" />
                                 <strong className="white-text">ExtraComm</strong>
                             </MDBNavbarBrand>
-                            <MDBNavbarToggler
-                            // onClick={this.toggleCollapse("navbarCollapse")}
-                            />
+                            <MDBNavbarToggler/>
                             <MDBCollapse
                                 id="navbarCollapse"
                                 isOpen={this.state.collapseID}
@@ -169,9 +162,9 @@ class Home extends React.Component {
                                                         <div className="custom-ui" id="popup">
                                                             <table>
                                                                 <td>
-                                                                    <img class="card-img-top img-thumbnail sary" src={"http://localhost:8080/profil/" + article.image} alt={article.titre} /><br />
-                                                                    <img class="card-img-top img-thumbnail sary1" src={"http://localhost:8080/profil/" + article.image1} alt={article.titre} />
-                                                                    <img class="card-img-top img-thumbnail sary1" src={"http://localhost:8080/profil/" + article.image2} alt={article.titre} />
+                                                                    <img class="card-img-top img-thumbnail sary" src={"https://tsioryraz.herokuapp.com/profil/" + article.image} alt={article.titre} /><br />
+                                                                    <img class="card-img-top img-thumbnail sary1" src={"https://tsioryraz.herokuapp.com/profil/" + article.image1} alt={article.titre} />
+                                                                    <img class="card-img-top img-thumbnail sary1" src={"https://tsioryraz.herokuapp.com/profil/" + article.image2} alt={article.titre} />
                                                                 </td>
                                                                 <td>
                                                                     <h6 className="text-pop">Suppression du Produit: </h6><br />
@@ -190,7 +183,7 @@ class Home extends React.Component {
                                             }
                                         })
                                     }
-                                    }><img class="card-img-top img-thumbnail" src={"http://localhost:8080/profil/" + article.image} alt={article.titre} /></button>
+                                    }><img class="card-img-top img-thumbnail" src={"https://tsioryraz.herokuapp.com/profil/" + article.image} alt={article.titre} /></button>
                                     <div class="card-body">
                                         <center>
                                             <h5 class="card-title">{article.titre}</h5>
@@ -221,24 +214,3 @@ const mapStateToProps = (state) => {
     }
 }
 export default connect(mapStateToProps)(Home)
-
-
-
-{/* <MDBContainer key={_id}>
-                                    <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
-                                        <MDBModalHeader>{article.titre}</MDBModalHeader>
-                                        <MDBModalBody>
-                                            <center>
-                                                <img class="card-img-top img-thumbnail" src={"http:localhost:8080/profil/" + article.image} alt={article.image} />
-                                                <img class="card-img-top img-thumbnail" src={"http:localhost:8080/profil/" + article.image1} alt={article.image1} />
-                                                <img class="card-img-top img-thumbnail" src={"http:localhost:8080/profil/" + article.image2} alt={article.image2} />
-                                                <p>{article.description}</p>
-                                                <p>{article.prix}</p>
-                                            </center>
-                                        </MDBModalBody>
-                                        <MDBModalFooter>
-                                            <MDBBtn color="secondary" onClick={() => { this.toggle() }}>Close</MDBBtn>
-                                        </MDBModalFooter>
-                                    </MDBModal>
-                                </MDBContainer> */}
-
