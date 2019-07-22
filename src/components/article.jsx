@@ -75,7 +75,7 @@ class Article extends React.Component {
                                                                     <div className="custom-ui" id="popup">
                                                                         <table>
                                                                             <td>
-                                                                                <img class="card-img-top img-thumbnail sary" src={"http://localhost:8080/profil/" + user.image} alt={user.titre} /><br />
+                                                                                <img class="card-img-top img-thumbnail sary" src={"https://tsiorytahback.herokuapp.com/profil/" + user.image} alt={user.titre} /><br />
                                                                             </td>
                                                                             <td>
                                                                                 <h6 className="text-pop">Suppression du Produit: </h6><br />
@@ -152,6 +152,7 @@ class Article extends React.Component {
                     </tbody>
                 </table>
             </center>
+
         )
     }
 }
