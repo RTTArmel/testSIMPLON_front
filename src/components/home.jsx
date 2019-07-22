@@ -1,71 +1,57 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBContainer } from "mdbreact";
 import { MDBCarousel, MDBCarouselCaption, MDBCarouselInner, MDBCarouselItem, MDBView, MDBMask } from "mdbreact";
-
+import { MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import './article.css'
+import 'react-confirm-alert/src/react-confirm-alert.css'
 
 class Home extends React.Component {
-    state = {
-        collapseID: ""
-    };
-
-    toggleCollapse = collapseID => () =>
-        this.setState(prevState => ({
-            collapseID: prevState.collapseID !== collapseID ? collapseID : ""
-        }));
-
     constructor(props) {
         super(props);
         this.state = {
-            reponse: [],
-            redirect: false,
-            id: ""
+            collapseID: "",
+            comment: [],
+            modal: false,
         };
     }
 
-    setRedirect = (id) => {
+    toggle = () => {
         this.setState({
-            redirect: true,
-            id: id
-        })
+            modal: !this.state.modal,
+        });
     }
 
-
-
+    // toggleCollapse = collapseID => () =>
+    //     this.setState(prevState => ({
+    //         collapseID: prevState.collapseID !== collapseID ? collapseID : ""
+    //     }));
 
     renderRedirect = () => {
         if (this.state.redirect) {
-            var url = '/article/' + this.state.id
+            var url = '/article/' + this.state._id
             return <Redirect to={url} />
         }
     }
 
-
     componentDidMount() {
-        this.callAPI();
-    }
-
-
-    callAPI() {
-        fetch("http://localhost:8080/article")
-            //.then(res => res.json())
-            .then(res => {
-                console.log("res", res);
-
-                this.setState({ reponse: res })
-            });
-
+        axios.get("http://localhost:8080/profil").then(res => {
+            console.log('res comment: ', res.data)
+            this.setState({ comment: res.data })
+            console.log('comment: ', this.state.comment)
+        })
     }
 
     render() {
         return (
-            <div>
+            <div className="homePage">
                 <div>
                     <MDBContainer className="pb-5">
                         <MDBNavbar id="Totalhome"
-                            color="bg-danger"
-                            style={{ Bacgroundcolor: "blue" }}
+                            color="bg-primary"
                             dark
                             expand="md"
                             scrolling
@@ -73,36 +59,23 @@ class Home extends React.Component {
 
                             <MDBNavbarBrand>
                                 <img src="../images/logo.png" id="logo-header" alt="imagelogo" />
-                                <strong className="white-text">ExtrActu</strong>
+                                <strong className="white-text">ExtraComm</strong>
                             </MDBNavbarBrand>
                             <MDBNavbarToggler
-                                onClick={this.toggleCollapse("navbarCollapse")}
+                            // onClick={this.toggleCollapse("navbarCollapse")}
                             />
                             <MDBCollapse
                                 id="navbarCollapse"
                                 isOpen={this.state.collapseID}
                                 navbar
                             >
-                                <MDBNavbarNav left>
-                                    <MDBNavItem active>
-                                        <MDBNavLink to="#!" className="accueil">Accueil</MDBNavLink>
-                                    </MDBNavItem>
-                                    <MDBNavItem active>
-                                        <MDBNavLink to="#!" className="accueil">Categorie</MDBNavLink>
-                                    </MDBNavItem>
-                                    <MDBNavItem active>
-                                        <MDBNavLink to="#!" className="accueil">Protection</MDBNavLink>
-                                    </MDBNavItem>
-                                    <MDBNavItem active>
-                                        <MDBNavLink to="#!" className="accueil">Medicaux</MDBNavLink>
-                                    </MDBNavItem>
-                                </MDBNavbarNav>
+
                                 <MDBNavbarNav right>
-                                    <MDBNavItem active>
-                                        <MDBNavLink to="" className="accueil">Login</MDBNavLink>
+                                    <MDBNavItem>
+                                        <MDBNavLink to="/login" className="accueil">Connexion</MDBNavLink>
                                     </MDBNavItem>
-                                    <MDBNavItem active>
-                                        <MDBNavLink to="#!" className="accueil">Register</MDBNavLink>
+                                    <MDBNavItem>
+                                        <MDBNavLink to="/register" className="accueil">Créer Compte</MDBNavLink>
                                     </MDBNavItem>
                                 </MDBNavbarNav>
                             </MDBCollapse>
@@ -116,12 +89,12 @@ class Home extends React.Component {
                             className="z-depth-1"
                         >
                             <MDBCarouselInner>
-                                <MDBCarouselItem itemId="1">
+                                <MDBCarouselItem id='slid' itemId="1">
                                     <MDBView>
 
-                                        <img
+                                        <img id='slid1'
                                             className="d-block w-100"
-                                            src="../images/galaxy1.png"
+                                            src="../images/ecommerce1.png"
                                             alt="First slide"
                                         />
 
@@ -132,11 +105,11 @@ class Home extends React.Component {
                                         <p>First text</p>
                                     </MDBCarouselCaption>
                                 </MDBCarouselItem>
-                                <MDBCarouselItem itemId="2">
+                                <MDBCarouselItem id='slid' itemId="2">
                                     <MDBView>
-                                        <img
+                                        <img id='slid1'
                                             className="d-block w-100"
-                                            src="../images/galaxy2.png"
+                                            src="../images/ecommerce2.png"
                                             alt="Second slide"
                                         />
                                         <MDBMask overlay="black-strong" />
@@ -146,11 +119,11 @@ class Home extends React.Component {
                                         <p>Second text</p>
                                     </MDBCarouselCaption>
                                 </MDBCarouselItem>
-                                <MDBCarouselItem itemId="3">
+                                <MDBCarouselItem id='slid' itemId="3">
                                     <MDBView>
-                                        <img
+                                        <img id='slid1'
                                             className="d-block w-100"
-                                            src="../images/galaxy3.png"
+                                            src="../images/ecommerce3.png"
                                             alt="Third slide"
                                         />
                                         <MDBMask overlay="black-slight" />
@@ -160,11 +133,11 @@ class Home extends React.Component {
                                         <p>Third text</p>
                                     </MDBCarouselCaption>
                                 </MDBCarouselItem>
-                                <MDBCarouselItem itemId="4">
+                                <MDBCarouselItem id='slid' itemId="4">
                                     <MDBView>
-                                        <img
+                                        <img id='slid1'
                                             className="d-block w-100"
-                                            src="../images/galaxy4.png"
+                                            src="../images/ecommerce4.png"
                                             alt="Mattonit's item"
                                         />
                                         <MDBMask overlay="black-light" />
@@ -179,36 +152,93 @@ class Home extends React.Component {
 
                         <hr />
                     </MDBContainer>
-                </div>
-                {this.renderRedirect()}
-                {this.state.reponse.length > 0 ? this.state.reponse.map((art) => {
-                    return <div>
-                        <div>nom :{art.nom}</div>
-                        <div>article :{art.article}</div>
 
-                        <div>commentaire :{art.comment.map((com) => {
-                            return <div>
-                                <div>comment de {com.nom}</div>
-                                <div>le commentaire :{com.commentaire}</div>
+                </div>
+                {/* {this.renderRedirect()} */}
+
+                <div className='container'>
+                    <div className='row'>
+                        {this.state.comment.length > 0 ? (this.state.comment.sort((a, b) => { return b._id - a._id }).map((article, _id) => (
+                            <div className='col-md-3 carte' key={_id}>
+                                <div className="card">
+                                    <button onClick={() => {
+                                        confirmAlert({
+                                            customUI: ({ onClose }) => {
+                                                return (
+                                                    <center>
+                                                        <div className="custom-ui" id="popup">
+                                                            <table>
+                                                                <td>
+                                                                    <img class="card-img-top img-thumbnail sary" src={"http://localhost:8080/profil/" + article.image} alt={article.titre} /><br />
+                                                                    <img class="card-img-top img-thumbnail sary1" src={"http://localhost:8080/profil/" + article.image1} alt={article.titre} />
+                                                                    <img class="card-img-top img-thumbnail sary1" src={"http://localhost:8080/profil/" + article.image2} alt={article.titre} />
+                                                                </td>
+                                                                <td>
+                                                                    <h6 className="text-pop">Suppression du Produit: </h6><br />
+                                                                    <h6 className="text-pop">{article.titre}</h6><br />
+                                                                </td>
+                                                            </table>
+                                                            <button className="btn btn-dark"
+                                                                onClick={() => {
+                                                                    onClose();
+                                                                }}
+                                                            >OUI</button><a>&nbsp;&nbsp;</a>
+                                                            <button className="btn btn-dark" onClick={onClose}>NON</button>
+                                                        </div>
+                                                    </center>
+                                                );
+                                            }
+                                        })
+                                    }
+                                    }><img class="card-img-top img-thumbnail" src={"http://localhost:8080/profil/" + article.image} alt={article.titre} /></button>
+                                    <div class="card-body">
+                                        <center>
+                                            <h5 class="card-title">{article.titre}</h5>
+                                            <p class="test" style={{ textAlign: 'right' }}>Prix: {article.prix}</p>
+                                        </center>
+                                    </div>
+                                </div>
+                                <br />
+                                <div className='vide'></div>
                             </div>
-                        })}</div>
-                        <button onClick={() => this.setRedirect(art._id)}>voir</button>
-
+                        )
+                        )) : ''}
+                        <br />
                     </div>
-                }
-
-                ) : ""}
-
-
                 </div>
-                
-        )}}
-               
-        
-        const mapStateToProps = (state) => {
+
+
+            </div>
+
+        )
+    }
+}
+
+
+const mapStateToProps = (state) => {
     return {
-                    listeArticle: state.listeArticle
-            }
-        }
-        export default connect(mapStateToProps)(Home)
-        
+        client: state
+    }
+}
+export default connect(mapStateToProps)(Home)
+
+
+
+{/* <MDBContainer key={_id}>
+                                    <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
+                                        <MDBModalHeader>{article.titre}</MDBModalHeader>
+                                        <MDBModalBody>
+                                            <center>
+                                                <img class="card-img-top img-thumbnail" src={"http:localhost:8080/profil/" + article.image} alt={article.image} />
+                                                <img class="card-img-top img-thumbnail" src={"http:localhost:8080/profil/" + article.image1} alt={article.image1} />
+                                                <img class="card-img-top img-thumbnail" src={"http:localhost:8080/profil/" + article.image2} alt={article.image2} />
+                                                <p>{article.description}</p>
+                                                <p>{article.prix}</p>
+                                            </center>
+                                        </MDBModalBody>
+                                        <MDBModalFooter>
+                                            <MDBBtn color="secondary" onClick={() => { this.toggle() }}>Close</MDBBtn>
+                                        </MDBModalFooter>
+                                    </MDBModal>
+                                </MDBContainer> */}
+

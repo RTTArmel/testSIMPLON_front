@@ -1,86 +1,79 @@
-import React from 'react';
+import React, {Fragment} from 'react';
+import { MDBInput, MDBBtn } from "mdbreact";
 import './register.css'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import './register.css';
-import { BrowserRouter as  Link } from "react-router-dom";
+import { BrowserRouter as Link } from "react-router-dom";
 
 class Login extends React.Component {
-
     constructor(props) {
         super(props);
-        this.state = { userName: '', passWord: '' , redirect: false }
+        this.state = { nom: '', password: '' }
         this.handleChange = this.handleChange.bind(this)
+        this.login = this.login.bind(this)
+        this.renderRedirect = this.renderRedirect.bind(this)
+    }
+
+    renderRedirect = () => {
+        if (localStorage.getItem('login') == 'true') {
+            return <Redirect to='/admin' />
+        } else {
+            console.log('test');
+        }
+
     }
 
     handleChange(e) {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    validLogin(e) {
+    login(e) {
+        console.log('local login: ', localStorage.getItem('login'));
         const action = { type: "LOGIN", value: e }
         this.props.dispatch(action)
     }
 
-    setRedirect = () => {
-        this.setState({
-            redirect: true
-        })
-    }
-    renderRedirect = () => {
-        if (localStorage.getItem('connecte')) {            
-            return <Redirect to='/dashboard' />
-        }
-    }
 
     render() {
         return (
-                <div id="totalregister">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-3"></div>
-                            <div className="col-md-6">
-                                <div className="login-wrap">
-                                    <div className="login-html">
-                                        <div className="login-form">
-                                            <div className="sign-in-htm">
-                                                <center>
-                                                    <img id="image-login" src="../images/logo.png" alt="logoimage" />
-                                                </center><br />
-                                                    {this.renderRedirect()}
-                                                    <form onSubmit={(e) => {
-                                                        //e.preventDefault()
-                                                        this.setRedirect()
-                                                        this.validLogin({
-                                                        nom: this.state.userName,
-                                                        password: this.state.passWord
-                                                    })
-                                                    }}>
-                                                        <div className="group">
-                                                        <label for="user" className="label">Nom d'utilisateur</label>
-                                                        <input id="user" type="text" className="input" name="userName"  onChange={this.handleChange} value={this.state.text}/>
-                                                    </div><br />
-                                                    <div className="group">
-                                                        <label for="pass" className="label">Mot de passe</label>
-                                                        <input id="pass" type="passWord" className="input" name="passWord"  onChange={this.handleChange} value={this.state.text}/>
-                                                    </div>
-                                                    <br />
-                                                    <div className="group">
-                                                        <button className="button" id="boutton">Se connecter</button>
-                                                    </div>
-                                                </form>
-                                                <Link to="/register">S'inscrire</Link>
-                                            </div>
+            <div id="totalregister">
+                {this.renderRedirect()}
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-7 logo"></div>
+                        <div className="col-md-5">
+                            <div className="login-wrap">
+                                <div className="login-html">
+                                    <div className="login-form">
+                                        <div className="form-group">
+                                            <center>
+                                                <img id="image-login" src="../images/logo.png" alt="logoimage" />
+                                            </center><br />
+                                            <form>
+                                                <div className="form-group">
+                                                    <MDBInput label="Nom" size="lg" icon="user" id="user" type="text" className="input" name="nom" onChange={this.handleChange} value={this.state.value} />
+                                                    <MDBInput label="Password" size="lg" icon="lock" id="pass" type="passWord" className="input" name="password" onChange={this.handleChange} value={this.state.value} />
+                                                    <Fragment>
+                                                        <MDBBtn gradient="purple" className="button" id="boutton"  onClick={e => {
+                                                this.login({
+                                                    nom: this.state.nom,
+                                                    password: this.state.password,
+                                                })
+                                                this.setState({ nom: '', password: '' })
+                                            }}>Se connecter</MDBBtn>
+                                                    </Fragment>
+                                                </div>
+                                            </form>
+                                            <center><a href="/register">S'inscrire</a></center>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-3">
-                            </div>
                         </div>
-                        <div className="col-md-3"></div>
                     </div>
                 </div>
+            </div>
+
 
         )
     }
@@ -88,7 +81,7 @@ class Login extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user
+        client: state
     }
 }
 export default connect(mapStateToProps)(Login)

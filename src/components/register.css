@@ -1,8 +1,10 @@
-#totalregister {
-        background-image: url('../images/galaxy2.png');
+.logo {
+  margin-top: 2%;
+        background-image: url('../images/e-commerce.png');
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: contain;
 }
+
   a {
     color: inherit;
     text-decoration: none
@@ -11,23 +13,21 @@
   .login-wrap {
     width: 100%;
     height: 90%;
-    margin-top: 15px;
-    padding-bottom: 45px;
-    border-radius: 10px;
-    background-image: radial-gradient(closest-side ellipse at center, rgb(44, 95, 124), #18446d);
+    margin-top: 2%;
+    border-radius: 1.5%;
+    background-image: radial-gradient(closest-side ellipse at center, #ffc500, #e7695a);
     opacity: 0.9;
   }
   
   .login-html {
     width: 100%;
-    height: 600px;
-    padding: 40px 70px 50px 70px;
+    height: 100%;
+    padding: 40px 5% 30% 5%;
   }
   
   .login-html .tab {
     font-size: 18px;
-    padding-bottom: 5px;
-    margin-left: 10px;
+    margin-left: 10%;
     display: inline-block;
     border-bottom: 2px solid transparent;
     color: rgb(243, 234, 234); 
@@ -42,7 +42,7 @@
   }
   
   .login-form {
-    min-height: 345px;
+    min-height: 75%;
     position: relative;
     -webkit-perspective: 1000px;
     perspective: 1000px;
@@ -50,22 +50,17 @@
     transform-style: preserve-3d;
   }
   
-  .login-form .group {
-    margin-bottom: 15px;
-  }
-  .login-form .group .label, .login-form .group .input, .login-form .group  {
+ 
+  .login-form .group .label, .login-form .group .login-form .group  {
     width: 100%;
     color: rgb(18, 25, 27);
     display: block;
   }
   
-  .login-form .group .input, .login-form .group .button {
+  .login-form .group, .login-form .group {
     border: none;
-    padding: 10px 10px;
     border-radius: 10px;
     font-size: 20px;
-    background: rgba(236, 208, 208, 0.911);
-  
   }
   
   .login-form .group input[data-type="password"] {
@@ -73,16 +68,11 @@
   }
   
   .login-form .group .label {
-    color: hsl(175, 21%, 88%);
     font-size: 15px;
     font-weight: bolder;
   }
-  #boutton {
-    color: #c3c6cc;
-  }
   
-  .login-form .group .button {
-    background: #3a95a1;
+  .login-form .group {
     font-weight: bold;
     font-size: 20px;
     width: 80%;
@@ -96,8 +86,8 @@
   
   .hr {
     height: 3px;
-    margin: 10px 0 10px 0;
-    background: rgba(255, 255, 255, .2);
+    margin-top: 10px;
+    background: rgba(170, 22, 22, 0.2);
   }
   
   h4 {
@@ -110,4 +100,13 @@
 #image-login {
   width: 130px;
   cursor: pointer;
+}
+
+.input{
+  color: white !important;
+}
+
+.button{
+  margin-left: 30% !important;
+  text-align: center;
 }

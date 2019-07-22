@@ -12,6 +12,13 @@ code {
     monospace;
 }
 
+.card{
+  position: absolute;
+  float: unset;
+  z-index: 100;
+  width: 300px;
+}
+
 body{
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -37,6 +44,9 @@ a{
 
 main {
   background-color: #EDEDEE;
+  min-height: 400px;
+  height: 100%;
+  width: 70% !important;
 }
 
 .navbar-brand{
