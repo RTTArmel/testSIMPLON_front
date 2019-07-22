@@ -153,6 +153,7 @@ class Article extends React.Component {
                 </table>
             </center>
 
+
         )
     }
 }
