@@ -16,7 +16,7 @@ function connexion(state = initialState, action) {
     //postAdmin 8080
     case 'REGISTER':
       console.log("action: ", action.value);
-      axios.post('https://tsiorytahback.herokuapp.com/register/', action.value)
+      axios.post('http://tsiorytahback.herokuapp.com/register/', action.value)
         // axios.post('http://localhost:8080/register/', action.value)
         .then((response) => {
           console.log("post ok: res.data ", response.data);
@@ -32,7 +32,7 @@ function connexion(state = initialState, action) {
 
     case 'EDIT_PROFIL':
       console.log("action: ", action.value);
-           axios.post('https://tsiorytahback.herokuapp.com/register/'+ localStorage.getItem('id'), action.value)
+           axios.post('http://tsiorytahback.herokuapp.com/register/'+ localStorage.getItem('id'), action.value)
       // axios.put("http://localhost:8080/register/" + localStorage.getItem('id'), action.value)
         .then((response) => {
           console.log("put ok: res.data ", response.data);
@@ -47,7 +47,7 @@ function connexion(state = initialState, action) {
     //postLogin 8080
     case 'LOGIN':
       console.log("action: ", action.value);
-           axios.post('https://tsiorytahback.herokuapp.com/login/', action.value)
+           axios.post('http://tsiorytahback.herokuapp.com/login/', action.value)
       // axios.post('http://localhost:8080/login', action.value)
         .then((response) => {
           if (response.data.nom == action.value.nom) {
@@ -70,7 +70,7 @@ function connexion(state = initialState, action) {
 
 
     case 'GETARTICLE':
-           axios.post('https://tsiorytahback.herokuapp.com/')
+           axios.post('http://tsiorytahback.herokuapp.com/')
       // axios.get('http://localhost:8080/')
         .then(function (response) {
           nextState = response.data
