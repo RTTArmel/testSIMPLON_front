@@ -34,7 +34,7 @@ class Article extends React.Component {
     componentDidMount() {
         var tab = []
         console.log('props: ', this.props)
-        axios.get("http://localhost:8080/profil").then(res => {
+        axios.get("https://tsiorytahback.herokuapp.com/profil").then(res => {
             console.log('res comment: ', res.data)
             for (let i = 0; i < res.data.length; i++) {
                 if (localStorage.getItem('id') == res.data[i].utilisateur) {
@@ -75,7 +75,7 @@ class Article extends React.Component {
                                                                     <div className="custom-ui" id="popup">
                                                                         <table>
                                                                             <td>
-                                                                                <img class="card-img-top img-thumbnail sary" src={"http://localhost:8080/profil/" + user.image} alt={user.titre} /><br />
+                                                                                <img class="card-img-top img-thumbnail sary" src={"https://tsiorytahback.herokuapp.com/profil/" + user.image} alt={user.titre} /><br />
                                                                             </td>
                                                                             <td>
                                                                                 <h6 className="text-pop">Suppression du Produit: </h6><br />
@@ -162,7 +162,7 @@ class Article extends React.Component {
             //         {this.state.comment.length > 0 ? (this.state.comment.sort((a, b) => { return b._id - a._id }).map((article, _id) => (
             //                 <div className='col-md-5 carte' key={_id}>
             //                     <div className="card">
-            //                         <button onClick={this.toggle}><img class="card-img-top img-thumbnail" src={"http://localhost:8080/profil/" + article.image} alt={article.titre} /></button>
+            //                         <button onClick={this.toggle}><img class="card-img-top img-thumbnail" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image} alt={article.titre} /></button>
             //                         <div class="card-body">
             //                             <center>
             //                                 <h5 class="card-title">{article.titre}</h5>
@@ -174,7 +174,7 @@ class Article extends React.Component {
             //                                 <MDBModalHeader>{this.props.titre}</MDBModalHeader>
             //                                 <MDBModalBody>
             //                                     <center>
-            //                                         <img class="card-img-top img-thumbnail" src={"http://localhost:8080/profil/" + article.image} alt={article.titre} />
+            //                                         <img class="card-img-top img-thumbnail" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image} alt={article.titre} />
             //                                         <p>{article.description}</p>
             //                                         <p>{article.prix}</p>
             //                                     </center>
