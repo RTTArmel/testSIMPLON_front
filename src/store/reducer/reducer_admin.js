@@ -16,7 +16,7 @@ function connexion(state = initialState, action) {
     //postAdmin 8080
     case 'REGISTER':
       console.log("action: ", action.value);
-      axios.post('http://tsiorytahback.herokuapp.com/register/', action.value)
+      axios.post('https://tsiorytahback.herokuapp.com/register/', action.value)
         // axios.post('http://localhost:8080/register/', action.value)
         .then((response) => {
           console.log("post ok: res.data ", response.data);
