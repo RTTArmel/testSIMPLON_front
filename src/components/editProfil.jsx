@@ -85,24 +85,3 @@ const mapStateToProps = (state) => {
     }
 }
 export default connect(mapStateToProps)(EditProfil)
-
-
-
-    /*     enregistrement = () => {
-            this.setState({connecte: true})
-            axios.post("http://localhost:8080/register", {
-                nom: this.state.nom,
-                email: this.state.email,
-                password: this.state.password,
-                pwd: this.state.pwd
-            })
-                .then(res => {
-                    console.log("post ok: res.data ", res.data);
-                })
-                .catch(errr => {
-                    console.log("connect: ", this.state.connecte);
-                    console.log("state: ", this.state);
-                    console.log("erreur post: ", errr);
-    
-                })
-        } */
