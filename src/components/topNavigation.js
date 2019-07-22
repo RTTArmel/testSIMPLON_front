@@ -50,9 +50,6 @@ class TopNavigation extends Component {
                 <MDBNavbarToggler onClick={this.onClick} />
                 <MDBCollapse isOpen={this.state.collapse} navbar>
                     <MDBNavbarNav left>
-                        <MDBNavItem>
-                            <a className="nav-link navbar-link nom-user">Bonjour {localStorage.getItem('user')}</a>
-                        </MDBNavItem>
                     </MDBNavbarNav>
                     <MDBNavbarNav right>
                         <MDBNavItem onClick={() => {this.deconnection()}}>
