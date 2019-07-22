@@ -215,23 +215,3 @@ const mapStateToProps = (state) => {
 }
 export default connect(mapStateToProps)(Home)
 
-
-
-{/* <MDBContainer key={_id}>
-                                    <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
-                                        <MDBModalHeader>{article.titre}</MDBModalHeader>
-                                        <MDBModalBody>
-                                            <center>
-                                                <img class="card-img-top img-thumbnail" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image} alt={article.image} />
-                                                <img class="card-img-top img-thumbnail" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image1} alt={article.image1} />
-                                                <img class="card-img-top img-thumbnail" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image2} alt={article.image2} />
-                                                <p>{article.description}</p>
-                                                <p>{article.prix}</p>
-                                            </center>
-                                        </MDBModalBody>
-                                        <MDBModalFooter>
-                                            <MDBBtn color="secondary" onClick={() => { this.toggle() }}>Close</MDBBtn>
-                                        </MDBModalFooter>
-                                    </MDBModal>
-                                </MDBContainer> */}
-

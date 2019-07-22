@@ -66,7 +66,7 @@ class PostFrontToBack extends React.Component {
             response.json().then((body) => {
                 this.setState({
                     image: `https://tsiorytahback.herokuapp.com/profil/${body.image}`,
-                    image1: `https://tsiorytahback.herokuapp.com/${body.image1}`,
+                    image1: `https://tsiorytahback.herokuapp.com/profil/${body.image1}`,
                     image2: `https://tsiorytahback.herokuapp.com/profil/${body.image2}`
                 });
                 console.log('ity ilay body.fil', body.image);
