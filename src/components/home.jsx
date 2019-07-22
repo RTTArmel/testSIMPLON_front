@@ -33,7 +33,7 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        axios.get("https://tsioryraz.herokuapp.com/profil").then(res => {
+        axios.get("https://tsiorytahback.herokuapp.com/profil").then(res => {
             console.log('res comment: ', res.data)
             this.setState({ comment: res.data })
             console.log('comment: ', this.state.comment)
@@ -162,9 +162,9 @@ class Home extends React.Component {
                                                         <div className="custom-ui" id="popup">
                                                             <table>
                                                                 <td>
-                                                                    <img class="card-img-top img-thumbnail sary" src={"https://tsioryraz.herokuapp.com/profil/" + article.image} alt={article.titre} /><br />
-                                                                    <img class="card-img-top img-thumbnail sary1" src={"https://tsioryraz.herokuapp.com/profil/" + article.image1} alt={article.titre} />
-                                                                    <img class="card-img-top img-thumbnail sary1" src={"https://tsioryraz.herokuapp.com/profil/" + article.image2} alt={article.titre} />
+                                                                    <img class="card-img-top img-thumbnail sary" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image} alt={article.titre} /><br />
+                                                                    <img class="card-img-top img-thumbnail sary1" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image1} alt={article.titre} />
+                                                                    <img class="card-img-top img-thumbnail sary1" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image2} alt={article.titre} />
                                                                 </td>
                                                                 <td>
                                                                     <h6 className="text-pop">Suppression du Produit: </h6><br />
@@ -183,7 +183,7 @@ class Home extends React.Component {
                                             }
                                         })
                                     }
-                                    }><img class="card-img-top img-thumbnail" src={"https://tsioryraz.herokuapp.com/profil/" + article.image} alt={article.titre} /></button>
+                                    }><img class="card-img-top img-thumbnail" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image} alt={article.titre} /></button>
                                     <div class="card-body">
                                         <center>
                                             <h5 class="card-title">{article.titre}</h5>
