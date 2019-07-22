@@ -34,7 +34,7 @@ class Article extends React.Component {
     componentDidMount() {
         var tab = []
         console.log('props: ', this.props)
-        axios.get("https://tsioryraz.herokuapp.com/profil").then(res => {
+        axios.get("https://tsiorytahback.herokuapp.com/profil").then(res => {
             console.log('res comment: ', res.data)
             for (let i = 0; i < res.data.length; i++) {
                 if (localStorage.getItem('id') == res.data[i].utilisateur) {
