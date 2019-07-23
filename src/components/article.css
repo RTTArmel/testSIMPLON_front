@@ -45,15 +45,18 @@ font-weight: bolder;
 }
 
 .sary{
-    max-height: 200px !important;
+    max-height: 300px !important;
     width: auto !important;
 }
 
 .sary1{
-    max-height: 100px !important;
+    max-height: 200px !important;
     width: auto !important;
 }
 
+table{
+    background-color: #f3661f7c;
+}
 /* autre */
 /* table{
     margin-top: 10px;

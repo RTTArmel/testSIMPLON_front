@@ -12,13 +12,19 @@ class Article extends React.Component {
         this.state = {
             titre: '',
             description: '',
+            utilisateur: '',
             prix: '',
-            image: "",
-            image1: "",
-            image2: "",
+            image: '',
+            date: '',
+            debut: '',
+            duree: '',
+            reserve: '',
+            disponible: '',
             comment: [],
             modal: false,
         };
+        this.handleChange = this.handleChange.bind(this)
+        this.update = this.update.bind(this)
     }
 
     handleChange(e) {
@@ -29,6 +35,12 @@ class Article extends React.Component {
         this.setState({
             modal: !this.state.modal,
         });
+    }
+
+    update(e) {
+        console.log('local login: ', localStorage.getItem('login'));
+        const action = { type: "UPDATE_ARTICLE", value: e }
+        this.props.dispatch(action)
     }
 
     componentDidMount() {
@@ -48,6 +60,10 @@ class Article extends React.Component {
     }
 
     render() {
+        const style = {
+            fontFamily: 'Verdana',
+            color: 'red !important'
+          }
         return (
             // // AJOUT
             <center onSubmit={event => {
@@ -61,7 +77,8 @@ class Article extends React.Component {
                                     <td>
                                     <p id="titre" onChange={this.handleChange}><img class="card-img-top img-thumbnail image" src={"https://tsiorytahback.herokuapp.com/profil/" + user.image} alt={user.titre} /></p>
                                         {/* <p id="titre" onChange={this.handleChange}><img class="card-img-top img-thumbnail image" src={"http://localhost:8080/profil/" + user.image} alt={user.titre} /></p> */}
-                                        <p id="prix" style={{textAlign: "right"}} onChange={this.handleChange}>Prix: {user.prix}</p>
+                                        <p  style={{style}} id="prix" onChange={this.handleChange}>Prix: {user.prix}</p>
+                                        <p  style={{style}}>Place dispo: 0/{user.disponible}</p>
                                     </td>
                                     <td>
                                     <strong>{user.titre}</strong>
@@ -111,22 +128,12 @@ class Article extends React.Component {
                                                                 <form id='ID_FORMULAIRE'>
                                                                     <center>
                                                                         <div className="custom-ui" id="popup">
-                                                                            <input name='inputStoreID' placeholder={user.prix} id="entree" className="modif"></input><br />
+                                                                            <input name='inputStoreID' placeholder={user.prix} id="entree" className="modif" value={this.state.value} onChange={this.handleChange}></input><br />
                                                                             <p id="e"></p><br />
 
                                                                             <button className="btn btn-dark"
-                                                                                onClick={(e) => {
-                                                                                    user.prix = document.forms['ID_FORMULAIRE'].elements['inputStoreID'].value //Affectation du contenu de l'input dans user.prix 
-                                                                                    if (isNaN(user.prix) || user.prix == "") {
-                                                                                        var valid = "Entrer un Nombre"
-                                                                                        e.preventDefault()
-                                                                                        document.getElementById('e').innerHTML = valid; //Affichage de la variable valid dans le paragraphe e
-                                                                                    } else {
-                                                                                        valid = "";
-                                                                                        document.getElementById('e').innerHTML = valid;
-                                                                                        onClose();
-                                                                                    }
-                                                                                }
+                                                                                onClick= {
+                                                                                    this.update({titre: this.state.titre, description: this.state.description, prix: this.state.prix, date: this.state.date, debut: this.state.debut, duree: this.state.duree, disponible: this.state.disponible, reserve: this.state.reserve})
                                                                                 }
                                                                             >OK</button><a>&nbsp;&nbsp;</a>
 
