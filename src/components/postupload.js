@@ -19,7 +19,6 @@ class PostFrontToBack extends React.Component {
             duree: '',
             reserve: '',
             disponible: '',
-            active: false,
             modal: false
         };
         this.handleChange = this.handleChange.bind(this)
@@ -48,7 +47,6 @@ class PostFrontToBack extends React.Component {
             duree: '',
             reserve: '',
             disponible: '',
-            active: false,
         });
     }
 
@@ -81,8 +79,6 @@ class PostFrontToBack extends React.Component {
             response.json().then((body) => {
                 this.setState({
                     // image: `http://localhost:8080/profil/${body.image}`,
-                    // image1: `http://localhost:8080/profil/${body.image1}`,
-                    // image2: `http://localhost:8080/profil/${body.image2}`
                     image: `https://tsiorytahback.herokuapp.com/profil/${body.image}`,
                 });
                 console.log('ity ilay body.fil', body.image);
