@@ -8,7 +8,7 @@ import { BrowserRouter as Link } from "react-router-dom";
 class Login extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { nom: '', password: '' }
+        this.state = { nom: '', password: '', erreur: '' }
         this.handleChange = this.handleChange.bind(this)
         this.login = this.login.bind(this)
         this.renderRedirect = this.renderRedirect.bind(this)
@@ -57,9 +57,9 @@ class Login extends React.Component {
                                                         <MDBBtn gradient="purple" className="button" id="boutton"  onClick={e => {
                                                 this.login({
                                                     nom: this.state.nom,
-                                                    password: this.state.password,
+                                                    password: this.state.password
                                                 })
-                                                this.setState({ nom: '', password: '' })
+                                                this.setState({ nom: '', password: '', erreur: '' })
                                             }}>Se connecter</MDBBtn>
                                                     </Fragment>
                                                 </div>

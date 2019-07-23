@@ -57,6 +57,7 @@ function connexion(state = initialState, action) {
             localStorage.setItem('id', response.data._id)
             localStorage.setItem('user', response.data.nom)
             localStorage.setItem('login', 'true')
+            // localStorage.setItem('erreur', 'mots de passe incorrect')
             console.log('TSIORY response: ', response.data);
           }
           console.log("post ok: res.data ", response);
