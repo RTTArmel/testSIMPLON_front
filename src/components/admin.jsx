@@ -29,8 +29,11 @@ class Admin extends React.Component {
   }
 
   render() {
+    const style = {
+      fontFamily: 'Verdana !important'
+    }
     return (
-      <div>
+      <div style={{style}}>
         <div className="flexible-content">
           {this.renderRedirect()}
           <SideNavigation />

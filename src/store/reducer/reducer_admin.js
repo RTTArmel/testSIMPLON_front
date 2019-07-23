@@ -35,12 +35,26 @@ function connexion(state = initialState, action) {
 
     case 'EDIT_PROFIL':
       console.log("action: ", action.value);
-      axios.post('https://tsiorytahback.herokuapp.com/register/' + localStorage.getItem('id'), action.value)
+      axios.put('https://tsiorytahback.herokuapp.com/register/' + localStorage.getItem('id'), action.value)
         // axios.put("http://localhost:8080/register/" + localStorage.getItem('id'), action.value)
         .then((response) => {
           console.log("put ok: res.data ", response.data);
           localStorage.setItem('user', response.data[localStorage.getItem('id')].nom)
           console.log('reducer EDIT: ', localStorage.getItem('login'));
+        })
+        .catch((error) => {
+          console.log("erreur be: ", error);
+        });
+      break;
+
+      case 'DELETE_PROFIL':
+      console.log("action: ", action.value);
+      axios.delete('https://tsiorytahback.herokuapp.com/register/' + localStorage.getItem('id'), action.value)
+        // axios.put("http://localhost:8080/register/" + localStorage.getItem('id'), action.value)
+        .then((response) => {
+          console.log("delete ok: res.data ", response.data);
+          localStorage.setItem('id', 'none')
+          localStorage.setItem('user', 'none')
         })
         .catch((error) => {
           console.log("erreur be: ", error);
@@ -57,7 +71,6 @@ function connexion(state = initialState, action) {
             localStorage.setItem('id', response.data._id)
             localStorage.setItem('user', response.data.nom)
             localStorage.setItem('login', 'true')
-            // localStorage.setItem('erreur', 'mots de passe incorrect')
             console.log('TSIORY response: ', response.data);
           }
           console.log("post ok: res.data ", response);
@@ -68,6 +81,8 @@ function connexion(state = initialState, action) {
       break;
 
     case 'DECONNECT':
+      localStorage.setItem('id', 'none')
+      localStorage.setItem('user', 'none')
       localStorage.setItem('login', 'false');
       break;
 
@@ -86,6 +101,22 @@ function connexion(state = initialState, action) {
           console.log(error);
         })
       break;
+
+
+      case 'UPDATE_ARTICLE':
+        console.log("action: ", action.value);
+        axios.put('https://tsiorytahback.herokuapp.com/profil', action.value)
+          // axios.post('http://localhost:8080/register/', action.value)
+          .then((response) => {
+            console.log("post action: ", action.value);
+            console.log("post ok: res.data ", response.data);
+            console.log('reducer REGISTER: ', localStorage.getItem('login'));
+          })
+          .catch((error) => {
+            console.log("erreur be: ", error);
+          });
+        break;
+
 
     default:
       return state

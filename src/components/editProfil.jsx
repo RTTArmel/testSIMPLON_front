@@ -8,7 +8,7 @@ import axios from 'axios'
 class EditProfil extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { nom: '', email: '', password: '', pwd: '', modal: false }
+        this.state = { nom: '',  prenom: '',  specialite: '', email: '', password: '', pwd: '', modal: false }
         this.handleChange = this.handleChange.bind(this)
         this.enregistrement = this.enregistrement.bind(this)
         this.renderRedirect = this.renderRedirect.bind(this)
@@ -47,7 +47,9 @@ class EditProfil extends React.Component {
                 <form>
                     <div className="form-group">                                                        
                         <MDBInput label="Nom" black-text size="lg" icon="user" id="un" type="text" className="input" name="nom" value={this.state.value} placeholder={this.state.nom} onChange={this.handleChange} />
+                        <MDBInput label="Prenom" black-text size="lg" icon="user" id="unn" type="text" className="input" name="prenom" value={this.state.value} placeholder={this.state.nom} onChange={this.handleChange} />
                         <MDBInput label="Adresse e-mail" size="lg" icon="at" id="ml" type="email" className="input" name="email" value={this.state.value} placeholder={this.state.email} onChange={this.handleChange} />
+                        <MDBInput label="Specialite" black-text size="lg" icon="user" id="unnn" type="text" className="input" name="specialite" value={this.state.value} placeholder={this.state.nom} onChange={this.handleChange} />
                         <MDBInput label="Mots de passe" size="lg" icon="lock" id="pw" type="passWord" className="input" name="password" value={this.state.value} placeholder={this.state.password} onChange={this.handleChange} />
                         <MDBInput label="Confirmer Mots de passe" size="lg" icon="unlock"  id="" type="passWord" className="input" data-type="passWord" name="pwd" value={this.state.value} placeholder={this.state.pwd} onChange={this.handleChange} />
                     <p id='pass'></p>
@@ -57,6 +59,8 @@ class EditProfil extends React.Component {
                     console.log('local enregistrement: ', localStorage.getItem('login'));
                     this.enregistrement({
                         nom: this.state.nom,
+                        prenom: this.state.prenom,
+                        specialite: this.state.specialite,
                         email: this.state.email,
                         password: this.state.password,
                         pwd: this.state.pwd
