@@ -8,7 +8,7 @@ import axios from 'axios'
 class Register extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { nom: '', email: '', password: '', pwd: '' }
+        this.state = { nom: '', prenom: '', specialite: '', email: '', password: '', pwd: '' }
         this.handleChange = this.handleChange.bind(this)
         this.enregistrement = this.enregistrement.bind(this)
         this.renderRedirect = this.renderRedirect.bind(this)
@@ -53,7 +53,9 @@ class Register extends React.Component {
                                                     {this.renderRedirect()}
                                                     <div className="form-group">                                                        
                                                         <MDBInput label="Nom" size="lg" icon="user" id="un" type="text" className="input" name="nom" value={this.state.value} placeholder="nom d'utilisateur" onChange={this.handleChange} />
+                                                        <MDBInput label="Prenom" size="lg" icon="user" id="deux" type="text" className="input" name="prenom" value={this.state.value} placeholder="prenom d'utilisateur" onChange={this.handleChange} />
                                                         <MDBInput label="Adresse e-mail" size="lg" icon="at" id="ml" type="email" className="input" name="email" value={this.state.value} placeholder="exemple@exemple.com" onChange={this.handleChange} />
+                                                        <MDBInput label="Specialités" size="lg" icon="user" id="trois" type="text" className="input" name="specialite" value={this.state.value} placeholder="spécialités d'utilisateur" onChange={this.handleChange} />
                                                         <MDBInput label="Mots de passe" size="lg" icon="lock" id="pw" type="passWord" className="input" name="password" value={this.state.value} placeholder="********" onChange={this.handleChange} />
                                                         <MDBInput label="Confirmer Mots de passe" size="lg" icon="unlock"  id="" type="passWord" className="input" data-type="passWord" name="pwd" value={this.state.value} placeholder="********" onChange={this.handleChange} />
                                                     <p id='pass'></p>
@@ -62,11 +64,13 @@ class Register extends React.Component {
                                                     console.log('local enregistrement: ', localStorage.getItem('login'));
                                                     this.enregistrement({
                                                         nom: this.state.nom,
+                                                        prenom: this.state.prenom,
+                                                        specialite: this.state.specialite,
                                                         email: this.state.email,
                                                         password: this.state.password,
                                                         pwd: this.state.pwd
                                                     })
-                                                    this.setState({ nom: '', email: '', password: '', pwd: '', connecte: false })
+                                                    this.setState({ nom: '', prenom: '', specialite: '', email: '', password: '', pwd: '', connecte: false })
                                                 }}>S'inscrire</MDBBtn>
                                                     </div>
                                                 </form>

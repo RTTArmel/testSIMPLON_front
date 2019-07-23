@@ -10,6 +10,11 @@
     text-decoration: none
   }
   
+
+  /* strong{
+    margin-left: 50% !important;
+  } */
+
   .login-wrap {
     width: 100%;
     height: 90%;

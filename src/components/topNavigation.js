@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
+import './register.css'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
@@ -45,14 +46,16 @@ class TopNavigation extends Component {
             <MDBNavbar className="flexible-navbar" light expand="md" scrolling>
                 <MDBNavbarBrand>
                     {this.renderRedirect()}
-                    <strong>Bonjour {localStorage.getItem('user')}</strong>
                 </MDBNavbarBrand>
                 <MDBNavbarToggler onClick={this.onClick} />
                 <MDBCollapse isOpen={this.state.collapse} navbar>
                     <MDBNavbarNav left>
+                        <MDBNavItem>
+                            <strong className="nav-link navbar-link nom-user">Bonjour {localStorage.getItem('user')}</strong>
+                        </MDBNavItem>
                     </MDBNavbarNav>
                     <MDBNavbarNav right>
-                        <MDBNavItem onClick={() => {this.deconnection()}}>
+                        <MDBNavItem onClick={() => { this.deconnection() }}>
                             <MDBNavLink rel="noopener noreferrer" className="nav-link Ripple-parent" href="/login">Deconnexion</MDBNavLink>
                         </MDBNavItem>
                         <MDBNavItem>
