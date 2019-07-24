@@ -121,7 +121,7 @@ class Article extends React.Component {
                                         <p onChange={this.handleChange}><img class="card-img-top img-thumbnail image" src={"https://tsiorytahback.herokuapp.com/profil/" + user.image} alt={user.titre} /></p>
                                         {/* <p id="titre" onChange={this.handleChange}><img class="card-img-top img-thumbnail image" src={"http://localhost:8080/profil/" + user.image} alt={user.titre} /></p> */}
                                         <p id="prix" onChange={this.handleChange}>Prix: {user.prix}</p>
-                                        <p >Place dispo: {user.reserve.length}/{user.disponible}</p>
+                                        <p >Place dispo: 0/{user.disponible}</p>
                                     </td>
                                     <td className="col2">
                                         <h5>{user.titre}</h5>
