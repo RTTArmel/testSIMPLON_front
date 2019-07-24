@@ -17,14 +17,14 @@ function App() {
         <Router>
           <div>
             <Route exact path="/" component={Accueil} />
-            <div className="container">
+            {/* <div> */}
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
               {/* <Route path="/article/:id" component={Article } /> */}
               <Route path="/admin" component={Admin} />
               <Route path="/upload" component={Upload} />
               <Route path="/article" component={Article} />
-            </div>
+            {/* </div> */}
           </div>
         </Router>
       </Provider>

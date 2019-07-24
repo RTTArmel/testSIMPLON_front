@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import axios from 'axios'
+import { MDBContainer, MDBInput, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import './article.css'
 import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
@@ -10,6 +11,7 @@ class Article extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            active: true,
             titre: '',
             description: '',
             utilisateur: '',
@@ -25,6 +27,7 @@ class Article extends React.Component {
         };
         this.handleChange = this.handleChange.bind(this)
         this.update = this.update.bind(this)
+        this.suppr = this.suppr.bind(this)
     }
 
     handleChange(e) {
@@ -43,17 +46,18 @@ class Article extends React.Component {
         this.props.dispatch(action)
     }
 
-    suppr() {
+    suppr(e) {
         console.log('local login: ', localStorage.getItem('login'));
         const action = { type: "DELETE_ARTICLE", value: e }
         this.props.dispatch(action)
     }
+
     componentDidMount() {
         var tab = []
         console.log('props: ', this.props)
         axios.get("https://tsiorytahback.herokuapp.com/profil").then(res => {
             // axios.get("http://localhost:8080/profil").then(res => {
-                console.log('res comment: ', res.data)
+            console.log('res comment: ', res.data)
             for (let i = 0; i < res.data.length; i++) {
                 if (localStorage.getItem('id') == res.data[i].utilisateur) {
                     tab.push(res.data[i])
@@ -75,15 +79,15 @@ class Article extends React.Component {
                         {(this.state.comment.length > 0) ? (
                             this.state.comment.sort((a, b) => { return b._id - a._id }).map((user, _id) => (
                                 <tr key={_id}>
-                                    <td>
-                                    <p id="titre" onChange={this.handleChange}><img class="card-img-top img-thumbnail image" src={"https://tsiorytahback.herokuapp.com/profil/" + user.image} alt={user.titre} /></p>
+                                    <td id="titre">
+                                        <p onChange={this.handleChange}><img class="card-img-top img-thumbnail image" src={"https://tsiorytahback.herokuapp.com/profil/" + user.image} alt={user.titre} /></p>
                                         {/* <p id="titre" onChange={this.handleChange}><img class="card-img-top img-thumbnail image" src={"http://localhost:8080/profil/" + user.image} alt={user.titre} /></p> */}
-                                        <p  id="prix" onChange={this.handleChange}>Prix: {user.prix}</p>
-                                        <p >Place dispo: 0/{user.disponible}</p>
+                                        <p id="prix" onChange={this.handleChange}>Prix: {user.prix}</p>
+                                        <p >Place dispo: {user.reserve.length}/{user.disponible}</p>
                                     </td>
-                                    <td>
-                                    <strong>{user.titre}</strong>
-                                        <p id="description" onChange={this.handleChange}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos rerum itaque numquam, porro autem at maxime? Nemo porro ipsa tempore voluptas ullam, nam itaque doloremque, distinctio obcaecati eaque cumque quo.</p>
+                                    <td className="col2">
+                                        <h5>{user.titre}</h5>
+                                        <p id="description" onChange={this.handleChange}>{user.description}</p>
                                         <p>
                                             {/* SUPPRESSION */}
                                             <button className="btn btn-danger"
@@ -91,11 +95,10 @@ class Article extends React.Component {
                                                     confirmAlert({
                                                         customUI: ({ onClose }) => {
                                                             return (
-                                                                <center>
+                                                                <center key={_id}>
                                                                     <div className="custom-ui" id="popup">
                                                                         <table>
                                                                             <td>
-                                                                                {/* <img class="card-img-top img-thumbnail sary" src={"http://localhost:8080/profil/" + user.image} alt={user.titre} /><br /> */}
                                                                                 <img class="card-img-top img-thumbnail sary" src={"https://tsiorytahback.herokuapp.com/profil/" + user.image} alt={user.titre} /><br />
                                                                             </td>
                                                                             <td>
@@ -105,7 +108,18 @@ class Article extends React.Component {
                                                                         </table>
                                                                         <button className="btn btn-dark"
                                                                             onClick={() => {
-                                                                                this.state.suppr()
+                                                                                this.suppr({
+                                                                                    _id: user._id,
+                                                                                    titre: user.titre,
+                                                                                    description: user.description,
+                                                                                    date: user.date,
+                                                                                    debut: user.debut,
+                                                                                    duree: user.duree,
+                                                                                    disponible: user.disponible,
+                                                                                    reserve: user.reserve,
+                                                                                    image: user.image,
+                                                                                    active: false
+                                                                                })
                                                                                 onClose();
                                                                             }}
                                                                         >
@@ -130,16 +144,57 @@ class Article extends React.Component {
                                                                 <form id='ID_FORMULAIRE'>
                                                                     <center>
                                                                         <div className="custom-ui" id="popup">
-                                                                            <input name='inputStoreID' placeholder={user.prix} id="entree" className="modif" value={this.state.value} onChange={this.handleChange}></input><br />
-                                                                            <p id="e"></p><br />
-
-                                                                            <button className="btn btn-dark"
-                                                                                onClick= {
-                                                                                    this.update({titre: this.state.titre, description: this.state.description, prix: this.state.prix, date: this.state.date, debut: this.state.debut, duree: this.state.duree, disponible: this.state.disponible, reserve: this.state.reserve})
-                                                                                }
-                                                                            >OK</button><a>&nbsp;&nbsp;</a>
-
-                                                                            <button className="btn btn-dark" onClick={onClose}>Annuler</button>
+                                                                            <div className="form-group">
+                                                                                <div className='container'>
+                                                                                    <div className='row'>
+                                                                                        <div className='col-md-9'></div>
+                                                                                        <div className='col-md-3 custom-control custom-switch'>
+                                                                                            <input ref="box1" name="active" type="checkbox" class="custom-control-input" id="customSwitches1" />
+                                                                                            <label class="custom-control-label" for="customSwitches1">Publier</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div className='container'>
+                                                                                    <div className='row'>
+                                                                                        <div className='col-md-6'>
+                                                                                            <MDBInput label={user.titre} id="un" type="text" className="input black-text" name="titre" value={this.state.value} onChange={this.handleChange} />
+                                                                                            <MDBInput label={user.description} id="ml" type="textarea" rows="2" className="input black-text" name="description" value={this.state.value} onChange={this.handleChange} />
+                                                                                            <MDBInput label={user.prix} id="pw" type="number" className="input black-text" name="prix" value={this.state.value} onChange={this.handleChange} /><br />
+                                                                                        </div>
+                                                                                        <div className='col-md-6'>
+                                                                                            <MDBInput label={user.date} id="ml" type="date" className="input black-text" name="date" value={this.state.value} onChange={this.handleChange} />
+                                                                                            <MDBInput label={user.debut} id="ml1" type="time" className="input black-text" name="debut" value={this.state.value} onChange={this.handleChange} />
+                                                                                            <MDBInput label={user.duree} id="ml2" type="number" className="input black-text" name="duree" value={this.state.value} onChange={this.handleChange} />
+                                                                                            <MDBInput label={user.disponible} id="ml3" type="number" className="input black-text" name="disponible" value={this.state.value} onChange={this.handleChange} />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <center>
+                                                                                        <MDBBtn rounded className="button" id="boutton" onClick={e => {
+                                                                                            e.preventDefault()
+                                                                                            this.toggle()
+                                                                                            console.log('local enregistrement: ', localStorage.getItem('login'));
+                                                                                            if (this.refs.box1.checked) {
+                                                                                                this.setState({ active: true })
+                                                                                            } else { this.setState({ active: false }) }
+                                                                                            this.update({
+                                                                                                active: this.state.active,
+                                                                                                titre: this.state.titre,
+                                                                                                description: this.state.description,
+                                                                                                prix: this.state.prix,
+                                                                                                date: this.state.date,
+                                                                                                debut: this.state.debut,
+                                                                                                duree: this.state.duree,
+                                                                                                disponible: this.state.disponible,
+                                                                                                duree: this.state.duree,
+                                                                                                duree: this.state.duree,
+                                                                                            })
+                                                                                        }}>Confirmer</MDBBtn>
+                                                                                        <button className="btn btn-dark" onClick={onClose}>Annuler</button>
+                                                                                        </center>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
                                                                     </center>
                                                                 </form>

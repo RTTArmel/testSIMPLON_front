@@ -33,13 +33,23 @@ class Admin extends React.Component {
       fontFamily: 'Verdana !important'
     }
     return (
-      <div style={{style}}>
-        <div className="flexible-content">
+      <div style={{ style }}>
+        <div className="flexible-content accueil">
           {this.renderRedirect()}
           <SideNavigation />
           <TopNavigation />
-          <main id="content" className="p-5">
-            <Routes />
+          <main>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-md-2'></div>
+                <div className='col-md-8'>
+                  <center>
+                    <Routes />
+                  </center>
+                </div>
+                <div className='col-md-2'></div>
+              </div>
+            </div>
           </main>
           <Footer />
         </div>

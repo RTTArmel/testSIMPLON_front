@@ -2,12 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
-import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBContainer } from "mdbreact";
-import { MDBCarousel, MDBCarouselCaption, MDBCarouselInner, MDBCarouselItem, MDBView, MDBMask } from "mdbreact";
-import { MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
+import { MDBNavbar, MDBInput, MDBBtn, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBContainer } from "mdbreact";
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import './article.css'
 import 'react-confirm-alert/src/react-confirm-alert.css'
+import Footer from './../components/Footer';
 
 class Home extends React.Component {
     constructor(props) {
@@ -16,13 +15,29 @@ class Home extends React.Component {
             collapseID: "",
             comment: [],
             modal: false,
+            nom: '',
+            prenom: '',
+            specialite: '',
+            email: '',
+            password: '',
+            pwd: ''
         };
+        this.handleChange = this.handleChange.bind(this)
+        this.enregistrement = this.enregistrement.bind(this)
     }
 
+    enregistrement(e) {
+        const action = { type: "INSCRIRE", value: e }
+        this.props.dispatch(action)
+    }
     toggle = () => {
         this.setState({
             modal: !this.state.modal,
         });
+    }
+
+    handleChange(e) {
+        this.setState({ [e.target.name]: e.target.value })
     }
 
     renderRedirect = () => {
@@ -34,14 +49,14 @@ class Home extends React.Component {
 
     componentDidMount() {
         axios.get("https://tsiorytahback.herokuapp.com/profil").then(res => {
-        // axios.get("http://localhost:8080/profil").then(res => {
-        var tab = []
-        console.log('res.data: ', res.data);
-        for (let i=0; i<res.data.length; i++) {
-            if(res.data[i].active == true) {
-                tab.push(res.data[i])
+            // axios.get("http://localhost:8080/profil").then(res => {
+            var tab = []
+            console.log('res.data: ', res.data);
+            for (let i = 0; i < res.data.length; i++) {
+                if (res.data[i].active == true) {
+                    tab.push(res.data[i])
+                }
             }
-        }    
             this.setState({ comment: tab })
             console.log('state comment: ', this.state.comment)
         })
@@ -51,108 +66,25 @@ class Home extends React.Component {
         return (
             <div className="homePage">
                 <div>
-                    <MDBContainer className="pb-5">
-                        <MDBNavbar id="Totalhome"
-                            color="bg-primary"
-                            dark
-                            expand="md"
-                            scrolling
-                        >
+                    <MDBNavbar id="Totalhome" color="bg-primary" dark expand="md" scrolling>
 
-                            <MDBNavbarBrand>
-                                <img src="../images/logo.png" id="logo-header" alt="imagelogo" />
-                                <strong className="white-text">ExtraComm</strong>
-                            </MDBNavbarBrand>
-                            <MDBNavbarToggler />
-                            <MDBCollapse
-                                id="navbarCollapse"
-                                isOpen={this.state.collapseID}
-                                navbar
-                            >
+                        <MDBNavbarBrand>
+                            <img src="../images/logo.png" id="logo-header" alt="ExtraCOOK" />
+                            <strong className="white-text">ExtraComm</strong>
+                        </MDBNavbarBrand>
+                        <MDBNavbarToggler />
+                        <MDBCollapse id="navbarCollapse" isOpen={this.state.collapseID} navbar>
+                            <MDBNavbarNav right>
+                                <MDBNavItem>
+                                    <MDBNavLink to="/login" className="accueil">Connexion</MDBNavLink>
+                                </MDBNavItem>
+                                <MDBNavItem>
+                                    <MDBNavLink to="/register" className="accueil">Créer Compte</MDBNavLink>
+                                </MDBNavItem>
+                            </MDBNavbarNav>
+                        </MDBCollapse>
 
-                                <MDBNavbarNav right>
-                                    <MDBNavItem>
-                                        <MDBNavLink to="/login" className="accueil">Connexion</MDBNavLink>
-                                    </MDBNavItem>
-                                    <MDBNavItem>
-                                        <MDBNavLink to="/register" className="accueil">Créer Compte</MDBNavLink>
-                                    </MDBNavItem>
-                                </MDBNavbarNav>
-                            </MDBCollapse>
-
-                        </MDBNavbar>
-                        <MDBCarousel id="slide"
-                            activeItem={1}
-                            length={4}
-                            showControls={true}
-                            showIndicators={true}
-                            className="z-depth-1"
-                        >
-                            <MDBCarouselInner>
-                                <MDBCarouselItem id='slid' itemId="1">
-                                    <MDBView>
-
-                                        <img id='slid1'
-                                            className="d-block w-100"
-                                            src="../images/ecommerce1.png"
-                                            alt="First slide"
-                                        />
-
-                                        <MDBMask overlay="black-light" />
-                                    </MDBView>
-                                    <MDBCarouselCaption>
-                                        <h3 className="h3-responsive " id="h3slide">Light mask</h3>
-                                        <p>First text</p>
-                                    </MDBCarouselCaption>
-                                </MDBCarouselItem>
-                                <MDBCarouselItem id='slid' itemId="2">
-                                    <MDBView>
-                                        <img id='slid1'
-                                            className="d-block w-100"
-                                            src="../images/ecommerce2.png"
-                                            alt="Second slide"
-                                        />
-                                        <MDBMask overlay="black-strong" />
-                                    </MDBView>
-                                    <MDBCarouselCaption>
-                                        <h3 className="h3-responsive" id="h3slide">Strong mask</h3>
-                                        <p>Second text</p>
-                                    </MDBCarouselCaption>
-                                </MDBCarouselItem>
-                                <MDBCarouselItem id='slid' itemId="3">
-                                    <MDBView>
-                                        <img id='slid1'
-                                            className="d-block w-100"
-                                            src="../images/ecommerce3.png"
-                                            alt="Third slide"
-                                        />
-                                        <MDBMask overlay="black-slight" />
-                                    </MDBView>
-                                    <MDBCarouselCaption>
-                                        <h3 className="h3-responsive" id="h3slide">Slight mask</h3>
-                                        <p>Third text</p>
-                                    </MDBCarouselCaption>
-                                </MDBCarouselItem>
-                                <MDBCarouselItem id='slid' itemId="4">
-                                    <MDBView>
-                                        <img id='slid1'
-                                            className="d-block w-100"
-                                            src="../images/ecommerce4.png"
-                                            alt="Mattonit's item"
-                                        />
-                                        <MDBMask overlay="black-light" />
-                                    </MDBView>
-                                    <MDBCarouselCaption>
-                                        <h3 className="h3-responsive" id="h3slide">Sopot Beach</h3>
-                                        <p>Taken june 21th by @mattonit</p>
-                                    </MDBCarouselCaption>
-                                </MDBCarouselItem>
-                            </MDBCarouselInner>
-                        </MDBCarousel>
-
-                        <hr />
-                    </MDBContainer>
-
+                    </MDBNavbar>
                 </div>
                 {/* {this.renderRedirect()} */}
 
@@ -161,44 +93,56 @@ class Home extends React.Component {
                         {this.state.comment.length > 0 ? (this.state.comment.sort((a, b) => { return b._id - a._id }).map((article, _id) => (
                             <div className='col-md-3 carte' key={_id}>
                                 <div className="card">
-                                    <button onClick={() => {
-                                        confirmAlert({
-                                            customUI: ({ onClose }) => {
-                                                return (
-                                                    <center>
-                                                        <div className="custom-ui" id="popup">
-                                                            <table>
-                                                                <td>
-                                                                    {/* <img class="card-img-top img-thumbnail sary" src={"http://localhost:8080/profil/" + article.image} alt={article.titre} /><br />
-                                                                    <img class="card-img-top img-thumbnail sary1" src={"http://localhost:8080/profil/" + article.image1} alt={article.titre} />
-                                                                    <img class="card-img-top img-thumbnail sary1" src={"http://localhost:8080/profil/" + article.image2} alt={article.titre} /> */}
-                                                                    <img class="card-img-top img-thumbnail sary" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image} alt={article.titre} /><br />
-                                                                    <img class="card-img-top img-thumbnail sary1" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image1} alt={article.titre} />
-                                                                    <img class="card-img-top img-thumbnail sary1" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image2} alt={article.titre} />
-                                                                </td>
-                                                                <td>
-                                                                    <h6 className="text-pop">Suppression du Produit: </h6><br />
-                                                                    <h6 className="text-pop">{article.titre}</h6><br />
-                                                                </td>
-                                                            </table>
-                                                            <button className="btn btn-dark"
-                                                                onClick={() => {
-                                                                    onClose();
-                                                                }}
-                                                            >OUI</button><a>&nbsp;&nbsp;</a>
-                                                            <button className="btn btn-dark" onClick={onClose}>NON</button>
-                                                        </div>
-                                                    </center>
-                                                );
-                                            }
-                                        })
-                                    }
-                                        }><img class="card-img-top img-thumbnail" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image} alt={article.titre} /></button>
-                                    {/* }><img class="card-img-top img-thumbnail" src={"http://localhost:8080/profil/" + article.image} alt={article.titre} /></button> */}
+                                    <img class="card-img-top img-thumbnail" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image} alt={article.titre} />
+                                    {/* <img class="card-img-top img-thumbnail" src={"http://localhost:8080/profil/" + article.image} alt={article.titre} /> */}
                                     <div class="card-body">
                                         <center>
                                             <h5 class="card-title">{article.titre}</h5>
-                                            <p class="test" style={{ textAlign: 'right' }}>Prix: {article.prix}</p>
+                                            <p class="test">Description: {article.description}</p>
+                                            <p class="test">Prix: {article.prix}</p>
+                                            <p className="test">Place disponible: {article.reserve.length}/{article.disponible}</p>
+                                            <MDBBtn rounded className="button" id="boutton" onClick={e => {
+                                                confirmAlert({
+                                                    customUI: ({ onClose }) => {
+                                                        return (
+                                                            <center>
+                                                                <div className="custom-ui">
+                                                                    <table>
+                                                                        <td>
+                                                                            {/* <img class="card-img-top img-thumbnail sary" src={"http://localhost:8080/profil/" + article.image} alt={article.titre} /><br />*/}
+                                                                            <img class="card-img-top img-thumbnail sary" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image} alt={article.titre} /><br />
+                                                                            <p className="text-pop">{article.titre}</p>
+                                                                            <p className="text-pop">Prix: {article.prix}</p>
+                                                                            <p className="text-pop">Place disponible: {article.reserve.length}/{article.disponible}</p>
+                                                                        </td>
+                                                                        <td>
+
+                                                                            <p className="text-pop">Veillez remplir ce Formulaire pour valider votre Inscription </p>
+                                                                            <MDBInput size="sm" label="Nom" icon="user" id="un" type="text" className="input" name="nom" value={this.state.value} placeholder="nom d'utilisateur" onChange={this.handleChange} />
+                                                                            <MDBInput size="sm" label="Prenom" icon="user" id="deux" type="text" className="input" name="prenom" value={this.state.value} placeholder="prenom d'utilisateur" onChange={this.handleChange} />
+                                                                            <MDBInput size="sm" label="Téléphone" icon="at" id="ml" type="number" className="input" name="telephone" value={this.state.value} placeholder="exemple@exemple.com" onChange={this.handleChange} />
+                                                                            <MDBInput size="sm" label="Adresse e-mail" icon="user" id="trois" type="email" className="input" name="email" value={this.state.value} placeholder="spécialités d'utilisateur" onChange={this.handleChange} />
+                                                                            <center>
+                                                                                <button className="btn btn-dark"
+                                                                                    onClick={() => {
+                                                                                        this.enregistrement({
+                                                                                            nom: this.state.nom,
+                                                                                            prenom: this.state.prenom,
+                                                                                            telephone: this.state.telephone,
+                                                                                            email: this.state.email
+                                                                                        })
+                                                                                        onClose();
+                                                                                    }}
+                                                                                >OUI</button>
+                                                                            </center>
+                                                                        </td>
+                                                                    </table>
+                                                                </div>
+                                                            </center>
+                                                        );
+                                                    }
+                                                })
+                                            }}>S'inscrire</MDBBtn>
                                         </center>
                                     </div>
                                 </div>
@@ -211,7 +155,7 @@ class Home extends React.Component {
                     </div>
                 </div>
 
-
+                <Footer />
             </div>
 
         )

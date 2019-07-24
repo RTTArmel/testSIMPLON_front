@@ -1,5 +1,6 @@
 import React from 'react';
-import { MDBInput, MDBBtn } from "mdbreact";
+import { MDBCarousel, MDBCarouselCaption, MDBCarouselInner, MDBCarouselItem, MDBView, MDBMask } from "mdbreact";
+import { MDBBtn, MDBInput, MDBNavLink, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 import './register.css'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
@@ -20,7 +21,6 @@ class Register extends React.Component {
         } else {
             console.log('test');
         }
-
     }
 
     handleChange(e) {
@@ -38,7 +38,78 @@ class Register extends React.Component {
                 {this.renderRedirect()}
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-md-7 logo"></div>
+                        <div className="col-md-7">
+                            <MDBCarousel id="slide"
+                                activeItem={1}
+                                length={4}
+                                showControls={true}
+                                showIndicators={true}
+                                className="z-depth-1"
+                            >
+                                <MDBCarouselInner>
+                                    <MDBCarouselItem id='slid' itemId="1">
+                                        <MDBView>
+
+                                            <img id='slid1'
+                                                className="d-block w-100"
+                                                src="../images/ecommerce1.png"
+                                                alt="First slide"
+                                            />
+
+                                            <MDBMask overlay="black-light" />
+                                        </MDBView>
+                                        <MDBCarouselCaption>
+                                            <h3 className="h3-responsive " id="h3slide">Light mask</h3>
+                                            <p>First text</p>
+                                        </MDBCarouselCaption>
+                                    </MDBCarouselItem>
+                                    <MDBCarouselItem id='slid' itemId="2">
+                                        <MDBView>
+                                            <img id='slid1'
+                                                className="d-block w-100"
+                                                src="../images/ecommerce2.png"
+                                                alt="Second slide"
+                                            />
+                                            <MDBMask overlay="black-strong" />
+                                        </MDBView>
+                                        <MDBCarouselCaption>
+                                            <h3 className="h3-responsive" id="h3slide">Strong mask</h3>
+                                            <p>Second text</p>
+                                        </MDBCarouselCaption>
+                                    </MDBCarouselItem>
+                                    <MDBCarouselItem id='slid' itemId="3">
+                                        <MDBView>
+                                            <img id='slid1'
+                                                className="d-block w-100"
+                                                src="../images/ecommerce3.png"
+                                                alt="Third slide"
+                                            />
+                                            <MDBMask overlay="black-slight" />
+                                        </MDBView>
+                                        <MDBCarouselCaption>
+                                            <h3 className="h3-responsive" id="h3slide">Slight mask</h3>
+                                            <p>Third text</p>
+                                        </MDBCarouselCaption>
+                                    </MDBCarouselItem>
+                                    <MDBCarouselItem id='slid' itemId="4">
+                                        <MDBView>
+                                            <img id='slid1'
+                                                className="d-block w-100"
+                                                src="../images/ecommerce4.png"
+                                                alt="Mattonit's item"
+                                            />
+                                            <MDBMask overlay="black-light" />
+                                        </MDBView>
+                                        <MDBCarouselCaption>
+                                            <h3 className="h3-responsive" id="h3slide">Sopot Beach</h3>
+                                            <p>Taken june 21th by @mattonit</p>
+                                        </MDBCarouselCaption>
+                                    </MDBCarouselItem>
+                                </MDBCarouselInner>
+                            </MDBCarousel>
+
+                            <hr />
+                        </div>
                         <div className="col-md-5">
                             <div className="login-wrap">
                                 <div className="login-html">
@@ -52,14 +123,14 @@ class Register extends React.Component {
                                                 {/* formulaire inscription  */}
                                                 <form>
                                                     <div className="form-group">
-                                                        <MDBInput label="Nom" size="lg" icon="user" id="un" type="text" className="input" name="nom" value={this.state.value} placeholder="nom d'utilisateur" onChange={this.handleChange} />
-                                                        <MDBInput label="Prenom" size="lg" icon="user" id="deux" type="text" className="input" name="prenom" value={this.state.value} placeholder="prenom d'utilisateur" onChange={this.handleChange} />
-                                                        <MDBInput label="Adresse e-mail" size="lg" icon="at" id="ml" type="email" className="input" name="email" value={this.state.value} placeholder="exemple@exemple.com" onChange={this.handleChange} />
-                                                        <MDBInput label="Specialités" size="lg" icon="user" id="trois" type="text" className="input" name="specialite" value={this.state.value} placeholder="spécialités d'utilisateur" onChange={this.handleChange} />
-                                                        <MDBInput label="Mots de passe" size="lg" icon="lock" id="pw" type="passWord" className="input" name="password" value={this.state.value} placeholder="********" onChange={this.handleChange} />
-                                                        <MDBInput label="Confirmer Mots de passe" size="lg" icon="unlock" id="" type="passWord" className="input" data-type="passWord" name="pwd" value={this.state.value} placeholder="********" onChange={this.handleChange} />
+                                                        <MDBInput label="Nom" icon="user" id="un" type="text" className="input" name="nom" value={this.state.value} placeholder="nom d'utilisateur" onChange={this.handleChange} />
+                                                        <MDBInput label="Prenom" icon="user" id="deux" type="text" className="input" name="prenom" value={this.state.value} placeholder="prenom d'utilisateur" onChange={this.handleChange} />
+                                                        <MDBInput label="Adresse e-mail" icon="at" id="ml" type="email" className="input" name="email" value={this.state.value} placeholder="exemple@exemple.com" onChange={this.handleChange} />
+                                                        <MDBInput label="Specialités" icon="user" id="trois" type="text" className="input" name="specialite" value={this.state.value} placeholder="spécialités d'utilisateur" onChange={this.handleChange} />
+                                                        <MDBInput label="Mots de passe" icon="lock" id="pw" type="passWord" className="input" name="password" value={this.state.value} placeholder="********" onChange={this.handleChange} />
+                                                        <MDBInput label="Confirmer Mots de passe" icon="unlock" id="" type="passWord" className="input" data-type="passWord" name="pwd" value={this.state.value} placeholder="********" onChange={this.handleChange} />
                                                         <p id='pass'></p>
-                                                        <MDBBtn gradient="purple" className="button" id="boutton" onClick={e => {
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<MDBBtn className="button" ronded='true' id="boutton" onClick={e => {
                                                             e.preventDefault()
                                                             console.log('local enregistrement: ', localStorage.getItem('login'));
                                                             this.enregistrement({
@@ -75,7 +146,7 @@ class Register extends React.Component {
                                                         }}>S'inscrire</MDBBtn>
                                                     </div>
                                                 </form>
-                                                <center><a href="/login">J'ai déjà un compte</a></center>
+                                                <center><MDBNavLink rel="noopener noreferrer" className="autre nav-link Ripple-parent" to='/login'>J'ai déjà un compte</MDBNavLink></center>
                                             </div>
 
                                         </div>

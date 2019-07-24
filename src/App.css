@@ -1,11 +1,11 @@
 .App {
   text-align: center;
 }
- .homePage{
+ /* .homePage{
 background-image: url('./images/téléchargement.jpeg');
 background-size: contain;
 background-repeat: repeat-y;
- }
+ } */
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -42,7 +42,7 @@ background-repeat: repeat-y;
 }
 
 #Totalhome {
-  background-color: #e7695a !important;
+  background-color: #d05c62 !important;
 }
 
 #h3slide {
@@ -58,4 +58,10 @@ background-repeat: repeat-y;
 }
 .white-text {
   cursor: pointer;
+}
+
+.footer{
+  margin-top: 20% !important;
+  width: 100% !important;
+  background-color: #f3671f !important;
 }
