@@ -35,9 +35,15 @@ class Home extends React.Component {
     componentDidMount() {
         axios.get("https://tsiorytahback.herokuapp.com/profil").then(res => {
         // axios.get("http://localhost:8080/profil").then(res => {
-            console.log('res comment: ', res.data)
-            this.setState({ comment: res.data })
-            console.log('comment: ', this.state.comment)
+        var tab = []
+        console.log('res.data: ', res.data);
+        for (let i=0; i<res.data.length; i++) {
+            if(res.data[i].active == true) {
+                tab.push(res.data[i])
+            }
+        }    
+            this.setState({ comment: tab })
+            console.log('state comment: ', this.state.comment)
         })
     }
 

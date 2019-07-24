@@ -43,6 +43,11 @@ class Article extends React.Component {
         this.props.dispatch(action)
     }
 
+    suppr() {
+        console.log('local login: ', localStorage.getItem('login'));
+        const action = { type: "DELETE_ARTICLE", value: e }
+        this.props.dispatch(action)
+    }
     componentDidMount() {
         var tab = []
         console.log('props: ', this.props)
@@ -60,10 +65,6 @@ class Article extends React.Component {
     }
 
     render() {
-        const style = {
-            fontFamily: 'Verdana',
-            color: 'red !important'
-          }
         return (
             // // AJOUT
             <center onSubmit={event => {
@@ -77,8 +78,8 @@ class Article extends React.Component {
                                     <td>
                                     <p id="titre" onChange={this.handleChange}><img class="card-img-top img-thumbnail image" src={"https://tsiorytahback.herokuapp.com/profil/" + user.image} alt={user.titre} /></p>
                                         {/* <p id="titre" onChange={this.handleChange}><img class="card-img-top img-thumbnail image" src={"http://localhost:8080/profil/" + user.image} alt={user.titre} /></p> */}
-                                        <p  style={{style}} id="prix" onChange={this.handleChange}>Prix: {user.prix}</p>
-                                        <p  style={{style}}>Place dispo: 0/{user.disponible}</p>
+                                        <p  id="prix" onChange={this.handleChange}>Prix: {user.prix}</p>
+                                        <p >Place dispo: 0/{user.disponible}</p>
                                     </td>
                                     <td>
                                     <strong>{user.titre}</strong>
@@ -98,12 +99,13 @@ class Article extends React.Component {
                                                                                 <img class="card-img-top img-thumbnail sary" src={"https://tsiorytahback.herokuapp.com/profil/" + user.image} alt={user.titre} /><br />
                                                                             </td>
                                                                             <td>
-                                                                                <h6 className="text-pop">Suppression du Produit: </h6><br />
+                                                                                <h6 className="text-pop">Suppression de l'Atelier: </h6><br />
                                                                                 <h6 className="text-pop">{user.titre}</h6><br />
                                                                             </td>
                                                                         </table>
                                                                         <button className="btn btn-dark"
                                                                             onClick={() => {
+                                                                                this.state.suppr()
                                                                                 onClose();
                                                                             }}
                                                                         >

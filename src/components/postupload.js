@@ -56,6 +56,28 @@ class PostFrontToBack extends React.Component {
         })
     }
 
+    // handleUploadImage(ev) {
+    //     const data = new FormData();
+    //     data.append('image', this.state.file);
+    //     data.append('titre', this.state.titre);
+    //     data.append('description', this.state.description);
+    //     data.append('prix', this.state.prix);
+    //     data.append('utilisateur', localStorage.getItem('id'))
+    //     data.append('date', this.state.date);
+    //     data.append('duree', this.state.duree);
+    //     data.append('debut', this.state.debut);
+    //     data.append('disponible', this.state.disponible);
+    //     const config = {
+    //         headers: {
+    //             'content-type': 'multipart/form-data'
+    //         }
+    //     };
+    //     axios.post("https://tsiorytahback.herokuapp.com/profil", data, config)
+    //         .then((response) => {
+    //             alert("The file is successfully uploaded");
+    //         }).catch((error) => {
+    //         });
+    // }
     handleUploadImage(ev) {
         const data = new FormData();
         if(this.refs.box.checked){
@@ -104,7 +126,7 @@ class PostFrontToBack extends React.Component {
                                 <div className='row'>
                                     <div className='col-md-9'></div>
                                     <div className='col-md-3 custom-control custom-switch'>
-                                        <input ref="box" name="active" type="checkbox" class="custom-control-input" id="customSwitches"/>
+                                        <input ref="box" name="active" type="checkbox" class="custom-control-input" id="customSwitches" />
                                         <label class="custom-control-label" for="customSwitches">Publier</label>
                                     </div>
                                 </div>
