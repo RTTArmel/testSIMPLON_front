@@ -113,7 +113,7 @@ class Home extends React.Component {
                                                                             <img class="card-img-top img-thumbnail sary" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image} alt={article.titre} /><br />
                                                                             <p className="text-pop">{article.titre}</p>
                                                                             <p className="text-pop">Prix: {article.prix}</p>
-                                                                            <p className="text-pop">Place disponible: {article.reserve.length}/{article.disponible}</p>
+                                                                            <p className="text-pop">Place disponible: 0/{article.disponible}</p>
                                                                         </td>
                                                                         <td>
 
