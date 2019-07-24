@@ -47,7 +47,7 @@ function connexion(state = initialState, action) {
         });
       break;
 
-      case 'DELETE_PROFIL':
+    case 'DELETE_PROFIL':
       console.log("action: ", action.value);
       axios.delete('https://tsiorytahback.herokuapp.com/register/' + localStorage.getItem('id'), action.value)
         // axios.put("http://localhost:8080/register/" + localStorage.getItem('id'), action.value)
@@ -103,33 +103,46 @@ function connexion(state = initialState, action) {
       break;
 
 
-      case 'UPDATE_ARTICLE':
-        console.log("action: ", action.value);
-        axios.put('https://tsiorytahback.herokuapp.com/profil', action.value)
-          // axios.post('http://localhost:8080/register/', action.value)
-          .then((response) => {
-            console.log("post action: ", action.value);
-            console.log("post ok: res.data ", response.data);
-            console.log('reducer REGISTER: ', localStorage.getItem('login'));
-          })
-          .catch((error) => {
-            console.log("erreur be: ", error);
-          });
-        break;
+    case 'UPDATE_ARTICLE':
+      console.log("action: ", action.value);
+      axios.put('https://tsiorytahback.herokuapp.com/profil', action.value)
+        // axios.post('http://localhost:8080/register/', action.value)
+        .then((response) => {
+          console.log("post action: ", action.value);
+          console.log("post ok: res.data ", response.data);
+          console.log('reducer REGISTER: ', localStorage.getItem('login'));
+        })
+        .catch((error) => {
+          console.log("erreur be: ", error);
+        });
+      break;
 
-        case 'DELETE_ARTICLE':
-        console.log("action: ", action.value);
-        axios.put('https://tsiorytahback.herokuapp.com/profil', action.value)
-          // axios.post('http://localhost:8080/register/', action.value)
-          .then((response) => {
-            console.log("post action: ", action.value);
-            console.log("post ok: res.data ", response.data);
-            console.log('reducer REGISTER: ', localStorage.getItem('login'));
-          })
-          .catch((error) => {
-            console.log("erreur be: ", error);
-          });
-        break;
+    case 'DELETE_ARTICLE':
+      console.log("action: ", action.value);
+      axios.delete('https://tsiorytahback.herokuapp.com/profil/' + action.value._id, action.value)
+        // axios.post('http://localhost:8080/register/', action.value)
+        .then((response) => {
+          console.log("delete action: ", action.value);
+          console.log("delete ok: res.data ", response.data);
+          console.log('reducer DELETE: ', localStorage.getItem('login'));
+        })
+        .catch((error) => {
+          console.log("erreur be: ", error);
+        });
+      break;
+
+    case 'INSCRIRE':
+      console.log("action: ", action.value);
+      axios.post('https://tsiorytahback.herokuapp.com/particulier', action.value)
+        // axios.post('http://localhost:8080/particulier/', action.value)
+        .then((response) => {
+          console.log("post action: ", action.value);
+          console.log("post ok: res.data ", response.data);
+        })
+        .catch((error) => {
+          console.log("erreur be: ", error);
+        });
+      break;
 
     default:
       return state

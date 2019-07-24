@@ -3,3 +3,13 @@
     width: 50%;
     margin-left: 50%;
 }
+
+.card-header{
+    background-color: #f3671f !important;
+}
+
+.button {
+    margin-right: 35% !important;
+    text-align: center;
+    background-image: radial-gradient( #ce5e64, #d05c62);
+  }

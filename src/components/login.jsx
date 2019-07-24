@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
-import { MDBInput, MDBBtn } from "mdbreact";
+import { MDBCarousel, MDBCarouselCaption, MDBCarouselInner, MDBCarouselItem, MDBView, MDBMask } from "mdbreact";
+import { MDBBtn, MDBInput, MDBNavLink, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 import './register.css'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
@@ -11,7 +12,7 @@ class Login extends React.Component {
         this.state = { nom: '', password: '', erreur: '' }
         this.handleChange = this.handleChange.bind(this)
         this.login = this.login.bind(this)
-        this.renderRedirect = this.renderRedirect.bind(this)
+        // this.renderRedirect = this.renderRedirect.bind(this)
     }
 
     renderRedirect = () => {
@@ -40,7 +41,78 @@ class Login extends React.Component {
                 {this.renderRedirect()}
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-md-7 logo"></div>
+                        <div className="col-md-7">
+                        <MDBCarousel id="slide"
+                            activeItem={1}
+                            length={4}
+                            showControls={true}
+                            showIndicators={true}
+                            className="z-depth-1"
+                        >
+                            <MDBCarouselInner>
+                                <MDBCarouselItem id='slid' itemId="1">
+                                    <MDBView>
+
+                                        <img id='slid1'
+                                            className="d-block w-100"
+                                            src="../images/ecommerce1.png"
+                                            alt="First slide"
+                                        />
+
+                                        <MDBMask overlay="black-light" />
+                                    </MDBView>
+                                    <MDBCarouselCaption>
+                                        <h3 className="h3-responsive " id="h3slide">Light mask</h3>
+                                        <p>First text</p>
+                                    </MDBCarouselCaption>
+                                </MDBCarouselItem>
+                                <MDBCarouselItem id='slid' itemId="2">
+                                    <MDBView>
+                                        <img id='slid1'
+                                            className="d-block w-100"
+                                            src="../images/ecommerce2.png"
+                                            alt="Second slide"
+                                        />
+                                        <MDBMask overlay="black-strong" />
+                                    </MDBView>
+                                    <MDBCarouselCaption>
+                                        <h3 className="h3-responsive" id="h3slide">Strong mask</h3>
+                                        <p>Second text</p>
+                                    </MDBCarouselCaption>
+                                </MDBCarouselItem>
+                                <MDBCarouselItem id='slid' itemId="3">
+                                    <MDBView>
+                                        <img id='slid1'
+                                            className="d-block w-100"
+                                            src="../images/ecommerce3.png"
+                                            alt="Third slide"
+                                        />
+                                        <MDBMask overlay="black-slight" />
+                                    </MDBView>
+                                    <MDBCarouselCaption>
+                                        <h3 className="h3-responsive" id="h3slide">Slight mask</h3>
+                                        <p>Third text</p>
+                                    </MDBCarouselCaption>
+                                </MDBCarouselItem>
+                                <MDBCarouselItem id='slid' itemId="4">
+                                    <MDBView>
+                                        <img id='slid1'
+                                            className="d-block w-100"
+                                            src="../images/ecommerce4.png"
+                                            alt="Mattonit's item"
+                                        />
+                                        <MDBMask overlay="black-light" />
+                                    </MDBView>
+                                    <MDBCarouselCaption>
+                                        <h3 className="h3-responsive" id="h3slide">Sopot Beach</h3>
+                                        <p>Taken june 21th by @mattonit</p>
+                                    </MDBCarouselCaption>
+                                </MDBCarouselItem>
+                            </MDBCarouselInner>
+                        </MDBCarousel>
+
+                        <hr />
+                        </div>
                         <div className="col-md-5">
                             <div className="login-wrap">
                                 <div className="login-html">
@@ -54,7 +126,7 @@ class Login extends React.Component {
                                                     <MDBInput label="Nom" size="lg" icon="user" id="user" type="text" className="input" name="nom" onChange={this.handleChange} value={this.state.value} />
                                                     <MDBInput label="Password" size="lg" icon="lock" id="pass" type="passWord" className="input" name="password" onChange={this.handleChange} value={this.state.value} />
                                                     <Fragment>
-                                                        <MDBBtn gradient="purple" className="button" id="boutton"  onClick={e => {
+                                                        <MDBBtn className="button" id="boutton"  onClick={e => {
                                                 this.login({
                                                     nom: this.state.nom,
                                                     password: this.state.password
@@ -64,7 +136,8 @@ class Login extends React.Component {
                                                     </Fragment>
                                                 </div>
                                             </form>
-                                            <center><a href="/register">S'inscrire</a></center>
+                                            
+                                            <center><MDBNavLink rel="noopener noreferrer" className="autre nav-link Ripple-parent" to='/register'>S'inscrire</MDBNavLink></center>
                                         </div>
                                     </div>
                                 </div>

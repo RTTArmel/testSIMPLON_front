@@ -43,13 +43,13 @@ class TopNavigation extends Component {
 
     render() {
         return (
-            <MDBNavbar className="flexible-navbar" light expand="md" scrolling>
+            <MDBNavbar id="MDBNavbar" className="flexible-navbar position-fixed" light expand="md" scrolling>
                 <MDBNavbarBrand>
                     {this.renderRedirect()}
                 </MDBNavbarBrand>
                 <MDBNavbarToggler onClick={this.onClick} />
                 <MDBCollapse isOpen={this.state.collapse} navbar>
-                    <MDBNavbarNav left>
+                    <MDBNavbarNav right>
                         <MDBNavItem>
                             <strong className="nav-link navbar-link nom-user">Bonjour {localStorage.getItem('user')}</strong>
                         </MDBNavItem>
@@ -57,12 +57,6 @@ class TopNavigation extends Component {
                     <MDBNavbarNav right>
                         <MDBNavItem onClick={() => { this.deconnection() }}>
                             <MDBNavLink rel="noopener noreferrer" className="nav-link Ripple-parent" href="/login">Deconnexion</MDBNavLink>
-                        </MDBNavItem>
-                        <MDBNavItem>
-                            <a className="nav-link navbar-link" rel="noopener noreferrer" href="https://pl-pl.facebook.com/mdbootstrap/"><MDBIcon fab icon="facebook" /></a>
-                        </MDBNavItem>
-                        <MDBNavItem>
-                            <a className="nav-link navbar-link" rel="noopener noreferrer" href="https://twitter.com/mdbootstrap"><MDBIcon fab icon="twitter" /></a>
                         </MDBNavItem>
                     </MDBNavbarNav>
                 </MDBCollapse>

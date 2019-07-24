@@ -9,6 +9,7 @@ class PostFrontToBack extends React.Component {
         super(props);
 
         this.state = {
+            active: true,
             titre: '',
             description: '',
             utilisateur: '',
@@ -55,29 +56,6 @@ class PostFrontToBack extends React.Component {
             [event.target.name]: event.target.value
         })
     }
-
-    // handleUploadImage(ev) {
-    //     const data = new FormData();
-    //     data.append('image', this.state.file);
-    //     data.append('titre', this.state.titre);
-    //     data.append('description', this.state.description);
-    //     data.append('prix', this.state.prix);
-    //     data.append('utilisateur', localStorage.getItem('id'))
-    //     data.append('date', this.state.date);
-    //     data.append('duree', this.state.duree);
-    //     data.append('debut', this.state.debut);
-    //     data.append('disponible', this.state.disponible);
-    //     const config = {
-    //         headers: {
-    //             'content-type': 'multipart/form-data'
-    //         }
-    //     };
-    //     axios.post("https://tsiorytahback.herokuapp.com/profil", data, config)
-    //         .then((response) => {
-    //             alert("The file is successfully uploaded");
-    //         }).catch((error) => {
-    //         });
-    // }
     handleUploadImage(ev) {
         const data = new FormData();
         if(this.refs.box.checked){
@@ -91,6 +69,7 @@ class PostFrontToBack extends React.Component {
         data.append('date', this.state.date);
         data.append('duree', this.state.duree);
         data.append('debut', this.state.debut);
+        data.append('reserve', 0);
         data.append('disponible', this.state.disponible);
 
         fetch('https://tsiorytahback.herokuapp.com/profil', {
@@ -111,12 +90,12 @@ class PostFrontToBack extends React.Component {
     render() {
         return (
 
-            <div className='container fluid w-100'> {/* //DEBUT */}
+            <div className='container fluid'> {/* //DEBUT */}
 
-                <div class="card" style={{ width: "500px", marginLeft: "10%" }}>
+                <div class="card" style={{ width: "500px" }}>
 
-                    <h5 class="card-header info-color white-text text-center">
-                        <strong>NOUVEL ATELIER</strong>
+                    <h5 class="card-header white-text text-center">
+                        NOUVEL ATELIER
                     </h5>
 
                     <div class="card-body">
@@ -132,19 +111,19 @@ class PostFrontToBack extends React.Component {
                                 </div>
                             </div>
 
-                            <MDBInput label="Nom du Produit" id="un" type="text" className="input black-text" name="titre" value={this.state.value} onChange={this.handleChange} />
-                            <MDBInput label="Descriptions" size="lg" id="ml" type="textarea" rows="3" className="input black-text" name="description" value={this.state.value} onChange={this.handleChange} />
-                            <MDBInput label="Prix" size="lg" id="pw" type="number" className="input black-text" name="prix" value={this.state.value} onChange={this.handleChange} />
-                            <MDBInput label="Date" size="lg" id="ml" type="date" className="input black-text" name="date" value={this.state.value} onChange={this.handleChange} />
-                            <MDBInput label="Heure de début" size="lg" id="ml1" type="time" className="input black-text" name="debut" value={this.state.value} onChange={this.handleChange} />
-                            <MDBInput label="Durée (heures)" size="lg" id="ml2" type="number" className="input black-text" name="duree" value={this.state.value} onChange={this.handleChange} />
-                            <MDBInput label="Nombre de places" size="lg" id="ml3" type="number" className="input black-text" name="disponible" value={this.state.value} onChange={this.handleChange} />
-                            <input ref={(ref) => { this.uploadInput = ref; }} type="file" name="image" />
+                            <MDBInput label="Titre" id="un" type="text" className="input black-text" name="titre" value={this.state.value} onChange={this.handleChange} />
+                            <MDBInput label="Descriptions" id="ml" type="textarea" rows="3" className="input black-text" name="description" value={this.state.value} onChange={this.handleChange} />
+                            <MDBInput label="Prix" id="pw" type="number" className="input black-text" name="prix" value={this.state.value} onChange={this.handleChange} />
+                            <MDBInput label="Date" id="ml" type="date" className="input black-text" name="date" value={this.state.value} onChange={this.handleChange} />
+                            <MDBInput label="Heure de début" id="ml1" type="time" className="input black-text" name="debut" value={this.state.value} onChange={this.handleChange} />
+                            <MDBInput label="Durée (heures)" id="ml2" type="number" className="input black-text" name="duree" value={this.state.value} onChange={this.handleChange} />
+                            <MDBInput label="Nombre de places" id="ml3" type="number" className="input black-text" name="disponible" value={this.state.value} onChange={this.handleChange} />
+                            <input className='btn btn-dark' ref={(ref) => { this.uploadInput = ref; }} type="file" name="image" />
 
                         </form>
                     </div>
                     <MDBContainer>
-                        <MDBBtn onClick={this.toggle}>Ajouter</MDBBtn>
+                        <MDBBtn className="button" id="boutton" onClick={this.toggle}>Ajouter</MDBBtn>
                         <MDBModal isOpen={this.state.modal}>
                             <MDBModalHeader>Enregistrement...</MDBModalHeader>
                             <MDBModalBody><center>Ajout du Produit avec succés</center></MDBModalBody>

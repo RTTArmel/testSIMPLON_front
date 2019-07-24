@@ -1,63 +1,88 @@
-button{
+button {
     border: none;
     background: none;
 }
 
-.image{
+.image {
     max-height: 200px !important;
     width: auto !important;
 }
 
-.carte{
+.carte {
     height: 450px !important;
     margin-right: 8% !important;
-    margin-bottom: 5% !important;
+    margin-top: 5% !important;
 }
 
-.vide{
-    height: 10% !important;
+h5 {
+    font-weight: bolder !important;
+    font-family: Roboto !important;
 }
-p{
+
+p {
     text-align: left;
+    font-family: Verdana !important;
 }
 
-#popup{
-    z-index: 99 !important;
-    border-radius: 5px;
-    background-image: radial-gradient(closest-side ellipse at center, #ffc500, #e7695a);
-    padding: 20px !important;
-    
+#popup {
+    padding: 5% 0% 5% 0%;
+    width: 100%;
+    height: 90%;
+    margin-top: 2%;
+    border-radius: 1.5%;
+    background-image: radial-gradient(closest-side ellipse at center, #f0ab89, #f3671f);
+    opacity: 0.9;
 }
 
-#slid{
-height: 500px !important;
+#slid {
+    height: 500px !important;
 }
 
-#slid1{
+#slid1 {
     box-align: center;
     height: 500px !important;
     width: auto !important;
 }
 
-.text-pop{
+.text-pop {
     text-align: center;
-font-weight: bolder;
+    font-weight: bolder;
 }
 
-.sary{
+.sary {
     max-height: 300px !important;
     width: auto !important;
 }
 
-.sary1{
+.sary1 {
     max-height: 200px !important;
     width: auto !important;
 }
 
-table{
-    background-color: #f3661f7c;
+table {
+    background-color: #f3661f60;
+}
+
+.footer {
+    background-color: #f3671f !important;
+}
+
+#ID_FORMULAIRE {
+    margin-top: 20% !important;
+}
+
+#titre {
+    width: 40% !important;
+    height: auto !important;
+}
+
+.custom-ui{
+    padding: 5%;
+    width: 100% !important;
+    height: auto !important;
 }
 /* autre */
+
 /* table{
     margin-top: 10px;
     background-color: rgb(123, 170, 170);
