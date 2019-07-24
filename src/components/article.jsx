@@ -43,6 +43,11 @@ class Article extends React.Component {
         this.props.dispatch(action)
     }
 
+    suppr() {
+        console.log('local login: ', localStorage.getItem('login'));
+        const action = { type: "DELETE_ARTICLE", value: e }
+        this.props.dispatch(action)
+    }
     componentDidMount() {
         var tab = []
         console.log('props: ', this.props)
@@ -94,12 +99,13 @@ class Article extends React.Component {
                                                                                 <img class="card-img-top img-thumbnail sary" src={"https://tsiorytahback.herokuapp.com/profil/" + user.image} alt={user.titre} /><br />
                                                                             </td>
                                                                             <td>
-                                                                                <h6 className="text-pop">Suppression du Produit: </h6><br />
+                                                                                <h6 className="text-pop">Suppression de l'Atelier: </h6><br />
                                                                                 <h6 className="text-pop">{user.titre}</h6><br />
                                                                             </td>
                                                                         </table>
                                                                         <button className="btn btn-dark"
                                                                             onClick={() => {
+                                                                                this.state.suppr()
                                                                                 onClose();
                                                                             }}
                                                                         >
