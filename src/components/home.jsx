@@ -100,7 +100,7 @@ class Home extends React.Component {
                                             <h5 class="card-title">{article.titre}</h5>
                                             <p class="test">Description: {article.description}</p>
                                             <p class="test">Prix: {article.prix}</p>
-                                            <p className="test">Place disponible: {article.reserve.length}/{article.disponible}</p>
+                                            <p className="test">Place disponible: 0/{article.disponible}</p>
                                             <MDBBtn rounded className="button" id="boutton" onClick={e => {
                                                 confirmAlert({
                                                     customUI: ({ onClose }) => {
