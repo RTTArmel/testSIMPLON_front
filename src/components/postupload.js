@@ -77,12 +77,16 @@ class PostFrontToBack extends React.Component {
             method: 'POST',
             body: data,
         }).then((response) => {
+            console.log('body respopnse: ',response);
+
             response.json().then((body) => {
+                console.log('body body: ',body.image);
+                
                 this.setState({
                     // image: `http://localhost:8080/profil/${body.image}`,
-                    image: `https://tsiorytahback.herokuapp.com/profil/${body.image}`,
+                    image: '${body.image}',
                 });
-                console.log('ity ilay body.fil', body.image);
+                console.log('ity ilay body.fil', this.state.image);
             });
         });
     }
@@ -90,7 +94,7 @@ class PostFrontToBack extends React.Component {
     render() {
         return (
 
-            <div className='container fluid'> {/* //DEBUT */}
+            <div className='container-fluid'> {/* //DEBUT */}
 
                 <div class="card" style={{ width: "500px" }}>
 

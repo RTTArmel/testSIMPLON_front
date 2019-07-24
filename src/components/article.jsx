@@ -30,11 +30,49 @@ class Article extends React.Component {
         this.suppr = this.suppr.bind(this)
     }
 
+    handleChange(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+    handleUploadImage(ev) {
+        const data = new FormData();
+        // if (this.refs.box.checked) {
+        //     data.append('active', true);
+        // } else { data.append('active', false) }
+        data.append('image', this.uploadInput.files[0]);
+        data.append('titre', this.state.titre);
+        data.append('description', this.state.description);
+        data.append('prix', this.state.prix);
+        data.append('utilisateur', localStorage.getItem('id'))
+        data.append('date', this.state.date);
+        data.append('duree', this.state.duree);
+        data.append('debut', this.state.debut);
+        data.append('reserve', 0);
+        data.append('disponible', this.state.disponible);
+        console.log('local atelier', localStorage.getItem('atelier'));
+        
+        fetch('https://tsiorytahback.herokuapp.com/profile/'+localStorage.getItem('atelier'), {
+            // fetch('http://localhost:8080/profil', {
+            method: 'PUT',
+            body: data,
+        }).then((response) => {
+            response.json().then((body) => {
+                this.setState({
+                    // image: `http://localhost:8080/profil/${body.image}`,
+                    image: `https://tsiorytahback.herokuapp.com/profil/${body.titre}`+localStorage.getItem('atelier')+'.jpg',
+                });
+                console.log('ity ilay body.fil', body.image);
+            });
+        });
+    }
+
     handleChange(e) {
         this.setState({ [e.target.name]: e.target.value })
     }
 
     toggle = () => {
+        this.handleUploadImage()
         this.setState({
             modal: !this.state.modal,
         });
@@ -95,7 +133,7 @@ class Article extends React.Component {
                                                     confirmAlert({
                                                         customUI: ({ onClose }) => {
                                                             return (
-                                                                <center key={_id}>
+                                                                <center>
                                                                     <div className="custom-ui" id="popup">
                                                                         <table>
                                                                             <td>
@@ -138,10 +176,13 @@ class Article extends React.Component {
                                             {/* MODIFICATION */}
                                             <button className="btn btn-success"
                                                 onClick={() => {
+                                                    console.log('id atelier: ', user._id);
+                                                    
+                                                    localStorage.setItem('atelier', user._id)
                                                     confirmAlert({
                                                         customUI: ({ onClose }) => {
                                                             return (
-                                                                <form id='ID_FORMULAIRE'>
+                                                                <form id='ID_FORMULAIRE' key={_id}>
                                                                     <center>
                                                                         <div className="custom-ui" id="popup">
                                                                             <div className="form-group">
@@ -170,27 +211,27 @@ class Article extends React.Component {
                                                                                     </div>
                                                                                     <div>
                                                                                         <center>
-                                                                                        <MDBBtn rounded className="button" id="boutton" onClick={e => {
-                                                                                            e.preventDefault()
-                                                                                            this.toggle()
-                                                                                            console.log('local enregistrement: ', localStorage.getItem('login'));
-                                                                                            if (this.refs.box1.checked) {
-                                                                                                this.setState({ active: true })
-                                                                                            } else { this.setState({ active: false }) }
-                                                                                            this.update({
-                                                                                                active: this.state.active,
-                                                                                                titre: this.state.titre,
-                                                                                                description: this.state.description,
-                                                                                                prix: this.state.prix,
-                                                                                                date: this.state.date,
-                                                                                                debut: this.state.debut,
-                                                                                                duree: this.state.duree,
-                                                                                                disponible: this.state.disponible,
-                                                                                                duree: this.state.duree,
-                                                                                                duree: this.state.duree,
-                                                                                            })
-                                                                                        }}>Confirmer</MDBBtn>
-                                                                                        <button className="btn btn-dark" onClick={onClose}>Annuler</button>
+                                                                                        <input className='btn btn-dark' ref={(ref) => { this.uploadInput = ref; }} type="file" name="image" /><br />
+                                                                                            <MDBBtn rounded className="button" id="boutton" onClick={e => {
+                                                                                                console.log('local enregistrement: ', localStorage.getItem('login'));
+                                                                                                // if (this.refs.box1.checked) {
+                                                                                                //     this.setState({ active: true })
+                                                                                                // } else { this.setState({ active: false }) }
+                                                                                                // this.update({
+                                                                                                //     active: true,
+                                                                                                //     titre: this.state.titre,
+                                                                                                //     description: this.state.description,
+                                                                                                //     prix: this.state.prix,
+                                                                                                //     date: this.state.date,
+                                                                                                //     debut: this.state.debut,
+                                                                                                //     duree: this.state.duree,
+                                                                                                //     reserve: 0,
+                                                                                                //     disponible: this.state.disponible,
+                                                                                                //     utilisateur: localStorage.getItem('id'),
+                                                                                                // })
+                                                                                                this.toggle()
+                                                                                            }}>Confirmer</MDBBtn>
+                                                                                            <button className="btn btn-dark" onClick={onClose}>Annuler</button>
                                                                                         </center>
                                                                                     </div>
                                                                                 </div>

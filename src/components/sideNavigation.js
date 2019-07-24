@@ -38,13 +38,6 @@ class SideNavigation extends Component {
             <MDBNavbarToggler onClick={this.onClick} />
                 <MDBCollapse isOpen={this.state.collapse} navbar>
             <MDBListGroup className="list-group-flush" id="lien-dasboard-total">
-                <NavLink id="lien-dasboard" to="/admin/monProfil" >
-                    <MDBListGroupItem  id='MDBListGroup'>
-                        <MDBIcon icon="user" className="mr-3" />
-                        Mon Profil
-                    </MDBListGroupItem>
-                </NavLink>
-
                 <NavLink id="lien-dasboard" exact={true} to="/admin/upload">
                     <MDBListGroupItem  id='MDBListGroup'>
                         <MDBIcon icon="download" className="mr-3" />
