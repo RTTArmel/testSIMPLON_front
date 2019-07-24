@@ -104,15 +104,16 @@ function connexion(state = initialState, action) {
 
 
     case 'UPDATE_ARTICLE':
-      console.log("action: ", action.value);
-      axios.put('https://tsiorytahback.herokuapp.com/profil', action.value)
-        // axios.post('http://localhost:8080/register/', action.value)
+      console.log("action update: ", action.value);
+      // axios.put('https://tsiorytahback.herokuapp.com/profil', action.value)
+        axios.put('http://localhost:8080/profil/', action.value)
         .then((response) => {
-          console.log("post action: ", action.value);
-          console.log("post ok: res.data ", response.data);
-          console.log('reducer REGISTER: ', localStorage.getItem('login'));
+          console.log("put action: ", action.value);
+          console.log("put ok: res.data ", response.data);
+          console.log('reducer PUT: ', localStorage.getItem('login'));
         })
         .catch((error) => {
+          console.log("put action: ", action.value);
           console.log("erreur be: ", error);
         });
       break;
