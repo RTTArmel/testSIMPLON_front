@@ -7,6 +7,7 @@ import { confirmAlert } from 'react-confirm-alert'; // Import
 import './article.css'
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import Footer from './../components/Footer';
+import article from './article';
 
 class Home extends React.Component {
     constructor(props) {
@@ -26,10 +27,29 @@ class Home extends React.Component {
         this.enregistrement = this.enregistrement.bind(this)
     }
 
+    // enregistrement(e) {
+    //     const action = { type: "INSCRIRE", value: e }
+    //     this.props.dispatch(action)
+    // }
+
     enregistrement(e) {
-        const action = { type: "INSCRIRE", value: e }
-        this.props.dispatch(action)
+        const data = new FormData()
+        data.append('nom', this.state.nom);
+        data.append('prenom', this.state.prenom);
+        data.append('telephone', this.state.telephone);
+        data.append('email', this.state.email);
+
+        console.log('article id: ', article._id);
+
+        fetch('https://tsiorytahback.herokuapp.com/particulier' + article._id, {
+            // fetch('http://localhost:8080/profil', {
+            method: 'POST',
+            body: data,
+        }).then((response) => {
+            console.log('body respopnse: ', response);
+        });
     }
+
     toggle = () => {
         this.setState({
             modal: !this.state.modal,
@@ -53,7 +73,7 @@ class Home extends React.Component {
             var tab = []
             console.log('res.data: ', res.data);
             for (let i = 0; i < res.data.length; i++) {
-                if (res.data[i].active == true) {
+                if (res.data[i].active == true && res.data[i].reserve < res.data[i].disponible) {
                     tab.push(res.data[i])
                 }
             }
@@ -100,7 +120,7 @@ class Home extends React.Component {
                                             <h5 class="card-title">{article.titre}</h5>
                                             <p class="test">Description: {article.description}</p>
                                             <p class="test">Prix: {article.prix}</p>
-                                            <p className="test">Place disponible: 0/{article.disponible}</p>
+                                            <p className="test">Place disponible: {article.reserve}/{article.disponible}</p>
                                             <MDBBtn rounded className="button" id="boutton" onClick={e => {
                                                 confirmAlert({
                                                     customUI: ({ onClose }) => {
@@ -113,7 +133,7 @@ class Home extends React.Component {
                                                                             <img class="card-img-top img-thumbnail sary" src={"https://tsiorytahback.herokuapp.com/profil/" + article.image} alt={article.titre} /><br />
                                                                             <p className="text-pop">{article.titre}</p>
                                                                             <p className="text-pop">Prix: {article.prix}</p>
-                                                                            <p className="text-pop">Place disponible: 0/{article.disponible}</p>
+                                                                            <p className="text-pop">Place disponible: {article.reserve}/{article.disponible}</p>
                                                                         </td>
                                                                         <td>
 
@@ -125,14 +145,24 @@ class Home extends React.Component {
                                                                             <center>
                                                                                 <button className="btn btn-dark"
                                                                                     onClick={() => {
-                                                                                        this.enregistrement({
-                                                                                            nom: this.state.nom,
-                                                                                            prenom: this.state.prenom,
-                                                                                            telephone: this.state.telephone,
-                                                                                            email: this.state.email
-                                                                                        })
+                                                                                        const data = new FormData()
+                                                                                        data.append('nom', this.state.nom);
+                                                                                        data.append('prenom', this.state.prenom);
+                                                                                        data.append('telephone', this.state.telephone);
+                                                                                        data.append('email', this.state.email);
+
+                                                                                        console.log('article id: ', article._id);
+
+                                                                                        fetch('https://tsiorytahback.herokuapp.com/particulier/' + article._id, {
+                                                                                            // fetch('http://localhost:8080/profil', {
+                                                                                            method: 'POST',
+                                                                                            body: data,
+                                                                                        }).then((response) => {
+                                                                                            console.log('body respopnse: ', response);
+                                                                                        });
                                                                                         onClose();
-                                                                                    }}
+                                                                                    }
+                                                                                    }
                                                                                 >OUI</button>
                                                                             </center>
                                                                         </td>

@@ -27,6 +27,7 @@ class Article extends React.Component {
         };
         this.handleChange = this.handleChange.bind(this)
         this.suppr = this.suppr.bind(this)
+        this.toggle = this.toggle.bind(this)
     }
 
     handleChange(event) {
@@ -36,9 +37,6 @@ class Article extends React.Component {
     }
     handleUploadImage(ev) {
         const data = new FormData();
-        // if (this.refs.box.checked) {
-        //     data.append('active', true);
-        // } else { data.append('active', false) }
         data.append('image', this.uploadInput.files[0]);
         data.append('titre', this.state.titre);
         data.append('description', this.state.description);
@@ -116,7 +114,7 @@ class Article extends React.Component {
                                         <p onChange={this.handleChange}><img class="card-img-top img-thumbnail image" src={"https://tsiorytahback.herokuapp.com/profil/" + user.image} alt={user.titre} /></p>
                                         {/* <p id="titre" onChange={this.handleChange}><img class="card-img-top img-thumbnail image" src={"http://localhost:8080/profil/" + user.image} alt={user.titre} /></p> */}
                                         <p id="prix" onChange={this.handleChange}>Prix: {user.prix}</p>
-                                        <p >Place dispo: 0/{user.disponible}</p>
+                                        <p >Place dispo: {user.reserve}/{user.disponible}</p>
                                     </td>
                                     <td className="col2">
                                         <h5>{user.titre}</h5>
@@ -209,22 +207,7 @@ class Article extends React.Component {
                                                                                         <input className='btn btn-dark' ref={(ref) => { this.uploadInput = ref; }} type="file" name="image" /><br />
                                                                                             <MDBBtn rounded className="button" id="boutton" onClick={e => {
                                                                                                 console.log('local enregistrement: ', localStorage.getItem('login'));
-                                                                                                // if (this.refs.box1.checked) {
-                                                                                                //     this.setState({ active: true })
-                                                                                                // } else { this.setState({ active: false }) }
-                                                                                                // this.update({
-                                                                                                //     active: true,
-                                                                                                //     titre: this.state.titre,
-                                                                                                //     description: this.state.description,
-                                                                                                //     prix: this.state.prix,
-                                                                                                //     date: this.state.date,
-                                                                                                //     debut: this.state.debut,
-                                                                                                //     duree: this.state.duree,
-                                                                                                //     reserve: 0,
-                                                                                                //     disponible: this.state.disponible,
-                                                                                                //     utilisateur: localStorage.getItem('id'),
-                                                                                                // })
-                                                                                                this.toggle()
+                                                                                                onClose()
                                                                                             }}>Confirmer</MDBBtn>
                                                                                             <button className="btn btn-dark" onClick={onClose}>Annuler</button>
                                                                                         </center>
