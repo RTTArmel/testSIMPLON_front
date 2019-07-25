@@ -80,13 +80,10 @@ class PostFrontToBack extends React.Component {
             console.log('body respopnse: ',response);
 
             response.json().then((body) => {
-                console.log('body body: ',body.image);
-                
+                console.log('body body: ',body);
                 this.setState({
-                    // image: `http://localhost:8080/profil/${body.image}`,
-                    image: '${body.image}',
+                     image: `https://tsiorytahback.herokuapp.com/profil/${body.image}`,
                 });
-                console.log('ity ilay body.fil', this.state.image);
             });
         });
     }

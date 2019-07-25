@@ -26,7 +26,6 @@ class Article extends React.Component {
             modal: false,
         };
         this.handleChange = this.handleChange.bind(this)
-        this.update = this.update.bind(this)
         this.suppr = this.suppr.bind(this)
     }
 
@@ -50,19 +49,21 @@ class Article extends React.Component {
         data.append('debut', this.state.debut);
         data.append('reserve', 0);
         data.append('disponible', this.state.disponible);
+        data.append('active', true)
         console.log('local atelier', localStorage.getItem('atelier'));
         
-        fetch('https://tsiorytahback.herokuapp.com/profile/'+localStorage.getItem('atelier'), {
+        fetch('https://tsiorytahback.herokuapp.com/profil/'+localStorage.getItem('atelier'), {
             // fetch('http://localhost:8080/profil', {
             method: 'PUT',
             body: data,
         }).then((response) => {
             response.json().then((body) => {
+                console.log('body: ',body);
+                
                 this.setState({
                     // image: `http://localhost:8080/profil/${body.image}`,
                     image: `https://tsiorytahback.herokuapp.com/profil/${body.titre}`+localStorage.getItem('atelier')+'.jpg',
                 });
-                console.log('ity ilay body.fil', body.image);
             });
         });
     }
@@ -76,12 +77,6 @@ class Article extends React.Component {
         this.setState({
             modal: !this.state.modal,
         });
-    }
-
-    update(e) {
-        console.log('local login: ', localStorage.getItem('login'));
-        const action = { type: "UPDATE_ARTICLE", value: e }
-        this.props.dispatch(action)
     }
 
     suppr(e) {
