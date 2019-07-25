@@ -31,24 +31,18 @@ class PostFrontToBack extends React.Component {
         this.setState({
             modal: !this.state.modal,
         })
-        return <Redirect to='/admin/article' />
+        console.log('modal', this.state.modal);
+        if (this.state.modal) {
+            return <Redirect exact to='/admin/article' />
+        }
     }
 
     toggle = () => {
         this.handleUploadImage()
         this.setState({
             modal: !this.state.modal,
-            titre: '',
-            description: '',
-            utilisateur: '',
-            prix: '',
-            image: '',
-            date: '',
-            debut: '',
-            duree: '',
-            reserve: '',
-            disponible: '',
         });
+        console.log('modal', this.state.modal);
     }
 
     handleChange(event) {
@@ -58,9 +52,9 @@ class PostFrontToBack extends React.Component {
     }
     handleUploadImage(ev) {
         const data = new FormData();
-        if(this.refs.box.checked){
+        if (this.refs.box.checked) {
             data.append('active', true);
-        } else {data.append('active', false)}
+        } else { data.append('active', false) }
         data.append('image', this.uploadInput.files[0]);
         data.append('titre', this.state.titre);
         data.append('description', this.state.description);
@@ -77,12 +71,12 @@ class PostFrontToBack extends React.Component {
             method: 'POST',
             body: data,
         }).then((response) => {
-            console.log('body respopnse: ',response);
+            console.log('body respopnse: ', response);
 
             response.json().then((body) => {
-                console.log('body body: ',body);
+                console.log('body body: ', body);
                 this.setState({
-                     image: `https://tsiorytahback.herokuapp.com/profil/${body.image}`,
+                    image: `https://tsiorytahback.herokuapp.com/profil/${body.image}`,
                 });
             });
         });
@@ -124,12 +118,17 @@ class PostFrontToBack extends React.Component {
                         </form>
                     </div>
                     <MDBContainer>
-                        <MDBBtn className="button" id="boutton" onClick={this.toggle}>Ajouter</MDBBtn>
+                        <MDBBtn className="button" id="boutton" onClick={() => {
+                            this.toggle()
+                            console.log('modal', this.state.modal);
+                        }}>Ajouter</MDBBtn>
                         <MDBModal isOpen={this.state.modal}>
                             <MDBModalHeader>Enregistrement...</MDBModalHeader>
                             <MDBModalBody><center>Ajout du Produit avec succés</center></MDBModalBody>
                             <MDBModalFooter>
-                                <MDBBtn color="secondary" onClick={() => { this.renderRedirect() }}>Close</MDBBtn>
+                                <MDBBtn color="secondary" onClick={() => {
+                                    this.renderRedirect()
+                                }}>Close</MDBBtn>
                             </MDBModalFooter>
                         </MDBModal>
                     </MDBContainer>
