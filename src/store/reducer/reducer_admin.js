@@ -89,7 +89,7 @@ function connexion(state = initialState, action) {
 
 
     case 'GETARTICLE':
-      axios.post('https://tsiorytahback.herokuapp.com/')
+      axios.get('https://tsiorytahback.herokuapp.com/profil')
         // axios.get('http://localhost:8080/')
         .then(function (response) {
           nextState = response.data
@@ -105,8 +105,8 @@ function connexion(state = initialState, action) {
 
     case 'UPDATE_ARTICLE':
       console.log("action update: ", action.value);
-      // axios.put('https://tsiorytahback.herokuapp.com/profil', action.value)
-        axios.put('http://localhost:8080/profil/', action.value)
+      axios.put('https://tsiorytahback.herokuapp.com/profil', action.value)
+        // axios.put('http://localhost:8080/profil/', action.value)
         .then((response) => {
           console.log("put action: ", action.value);
           console.log("put ok: res.data ", response.data);
