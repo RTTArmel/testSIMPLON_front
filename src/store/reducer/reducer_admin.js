@@ -2,12 +2,18 @@ import axios from 'axios'
 
 const initialState = {
   client: [{
-    nom: '',
-    prenom: '',
-    specialite: '',
-    email: '',
-    password: '',
-    pwd: ''
+    _id: '',
+    titre: '',
+    description: '',
+    prix: '',
+    date: '',
+    debut: '',
+    duree: '',
+    reserve: '',
+    disponible: '',
+    image: '',
+    active: '',
+    utilisateur: ''
   }]
 }
 
@@ -139,6 +145,60 @@ function connexion(state = initialState, action) {
         .then((response) => {
           console.log("post action: ", action.value);
           console.log("post ok: res.data ", response.data);
+
+          //DEBUT TEST
+          axios.get('https://tsiorytahback.herokuapp.com/profil/')
+            .then(res => {
+              for (let i = 0; i < res.data.length; i++) {
+                if (res.data[i]._id == localStorage.getItem('atelier')) {
+                  this.setState({
+                    _id: res.data[i]._id,
+                    titre: res.data[i].titre,
+                    description: res.data[i].description,
+                    prix: res.data[i].prix,
+                    date: res.data[i].date,
+                    debut: res.data[i].debut,
+                    duree: res.data[i].duree,
+                    reserve: res.data[i].reserve,
+                    disponible: res.data[i].disponible,
+                    image: res.data[i].image,
+                    active: res.data[i].active,
+                    utilisateur: res.data[i].utilisateur,
+                  })
+                }
+              }
+            })
+          const data = new FormData();
+          data.append('image', this.state.image);
+          data.append('titre', this.state.titre);
+          data.append('description', this.state.description);
+          data.append('prix', this.state.prix);
+          data.append('utilisateur', localStorage.getItem('id'))
+          data.append('date', this.state.date);
+          data.append('duree', this.state.duree);
+          data.append('debut', this.state.debut);
+          data.append('reserve', parseInt(this.state.reserve)+1);
+          data.append('disponible', this.state.disponible);
+          data.append('active', true)
+          console.log('local atelier', localStorage.getItem('atelier'));
+
+          fetch('https://tsiorytahback.herokuapp.com/profil/' + localStorage.getItem('atelier'), {
+            // fetch('http://localhost:8080/profil', {
+            method: 'PUT',
+            body: data,
+          }).then((response) => {
+            response.json().then((body) => {
+              console.log('body: ', body);
+
+              this.setState({
+                // image: `http://localhost:8080/profil/${body.image}`,
+                image: `https://tsiorytahback.herokuapp.com/profil/${body.titre}` + localStorage.getItem('atelier') + '.jpg',
+              });
+            });
+          });
+
+          //FIN TEST
+
         })
         .catch((error) => {
           console.log("erreur be: ", error);
