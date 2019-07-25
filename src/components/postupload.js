@@ -122,7 +122,7 @@ class PostFrontToBack extends React.Component {
                             <MDBInput label="Heure de début" id="ml1" type="time" className="input black-text" name="debut" value={this.state.value} onChange={this.handleChange} />
                             <MDBInput label="Durée (heures)" id="ml2" type="number" className="input black-text" name="duree" value={this.state.value} onChange={this.handleChange} />
                             <MDBInput label="Nombre de places" id="ml3" type="number" className="input black-text" name="disponible" value={this.state.value} onChange={this.handleChange} />
-                            <input className='btn btn-dark' ref={(ref) => { this.uploadInput = ref; }} type="file" name="image" />
+                            <input className='btn btn-dark' ref={(ref) => { this.uploadInput = ref; }} type="file" id="file" name="image" />
 
                         </form>
                     </div>

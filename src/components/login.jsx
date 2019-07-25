@@ -55,57 +55,49 @@ class Login extends React.Component {
 
                                         <img id='slid1'
                                             className="d-block w-100"
-                                            src="../images/ecommerce1.png"
+                                            src="../images/sary1.jpeg"
                                             alt="First slide"
                                         />
 
-                                        <MDBMask overlay="black-light" />
+                                        
                                     </MDBView>
                                     <MDBCarouselCaption>
-                                        <h3 className="h3-responsive " id="h3slide">Light mask</h3>
-                                        <p>First text</p>
                                     </MDBCarouselCaption>
                                 </MDBCarouselItem>
                                 <MDBCarouselItem id='slid' itemId="2">
                                     <MDBView>
                                         <img id='slid1'
                                             className="d-block w-100"
-                                            src="../images/ecommerce2.png"
+                                            src="../images/sary2.jpeg"
                                             alt="Second slide"
                                         />
-                                        <MDBMask overlay="black-strong" />
+                                        
                                     </MDBView>
                                     <MDBCarouselCaption>
-                                        <h3 className="h3-responsive" id="h3slide">Strong mask</h3>
-                                        <p>Second text</p>
                                     </MDBCarouselCaption>
                                 </MDBCarouselItem>
                                 <MDBCarouselItem id='slid' itemId="3">
                                     <MDBView>
                                         <img id='slid1'
                                             className="d-block w-100"
-                                            src="../images/ecommerce3.png"
+                                            src="../images/sary3.jpeg"
                                             alt="Third slide"
                                         />
-                                        <MDBMask overlay="black-slight" />
+                                        
                                     </MDBView>
                                     <MDBCarouselCaption>
-                                        <h3 className="h3-responsive" id="h3slide">Slight mask</h3>
-                                        <p>Third text</p>
                                     </MDBCarouselCaption>
                                 </MDBCarouselItem>
                                 <MDBCarouselItem id='slid' itemId="4">
                                     <MDBView>
                                         <img id='slid1'
                                             className="d-block w-100"
-                                            src="../images/ecommerce4.png"
+                                            src="../images/sary4.jpeg"
                                             alt="Mattonit's item"
                                         />
-                                        <MDBMask overlay="black-light" />
+                                        
                                     </MDBView>
                                     <MDBCarouselCaption>
-                                        <h3 className="h3-responsive" id="h3slide">Sopot Beach</h3>
-                                        <p>Taken june 21th by @mattonit</p>
                                     </MDBCarouselCaption>
                                 </MDBCarouselItem>
                             </MDBCarouselInner>

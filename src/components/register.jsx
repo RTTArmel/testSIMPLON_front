@@ -52,7 +52,7 @@ class Register extends React.Component {
 
                                             <img id='slid1'
                                                 className="d-block w-100"
-                                                src="../images/ecommerce1.png"
+                                                src="../images/sary1.jpeg"
                                                 alt="First slide"
                                             />
 
@@ -67,7 +67,7 @@ class Register extends React.Component {
                                         <MDBView>
                                             <img id='slid1'
                                                 className="d-block w-100"
-                                                src="../images/ecommerce2.png"
+                                                src="../images/sary2.jpeg"
                                                 alt="Second slide"
                                             />
                                             <MDBMask overlay="black-strong" />
@@ -81,7 +81,7 @@ class Register extends React.Component {
                                         <MDBView>
                                             <img id='slid1'
                                                 className="d-block w-100"
-                                                src="../images/ecommerce3.png"
+                                                src="../images/sary3.jpeg"
                                                 alt="Third slide"
                                             />
                                             <MDBMask overlay="black-slight" />
@@ -95,7 +95,7 @@ class Register extends React.Component {
                                         <MDBView>
                                             <img id='slid1'
                                                 className="d-block w-100"
-                                                src="../images/ecommerce4.png"
+                                                src="../images/sary4.jpeg"
                                                 alt="Mattonit's item"
                                             />
                                             <MDBMask overlay="black-light" />
