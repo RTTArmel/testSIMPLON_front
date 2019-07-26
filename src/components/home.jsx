@@ -165,6 +165,10 @@ class Home extends React.Component {
 
                 </div>
                 {/* {this.renderRedirect()} */}
+{/* 
+<div id="spinner" style="display: none;">
+<img id="img-spinner" src="spinner.gif" alt="Loading"/>
+</div> */}
 
                 <div className='container'>
                     <div className='row'>

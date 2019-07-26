@@ -218,6 +218,39 @@ class Article extends React.Component {
                                             >Edit</button>
                                         </p>
                                     </td>
+                                    <td>
+                                        {(user.active == true) ?
+                                            (<MDBBtn onClick={(e) => {
+                                                e.preventDefault()
+                                                console.log('active: ', user.active);
+                                                
+                                                axios.get('https://tsiorytahback.herokuapp.com/desactivation/' + user._id)
+                                                    .then(res => {
+                                                        console.log('desactivation ok', res);
+                                                        console.log('active: ', user.active);
+                                                        // axios.get('https://tsiorytahback.herokuapp.com/profil/' + localStorage.getItem('id'))
+                                                        //     .then(response => {
+                                                        //         this.setState({ comment: response.data })
+                                                        //     })
+                                                    })
+                                                    .catch(res => {
+                                                        console.log('erreur desactivation: ', res);
+                                                        
+                                                    })
+                                            }}>Desactiver</MDBBtn>) : (<MDBBtn onClick={(e) => {
+                                                e.preventDefault()
+                                                axios.get('https://tsiorytahback.herokuapp.com/activation/' + user._id)
+                                                    .then(res => {
+                                                        console.log('activation ok', res);
+                                                        console.log('active: ', user.active);
+                                                        // axios.get('https://tsiorytahback.herokuapp.com/profil/' + localStorage.getItem('id'))
+                                                        //     .then(response => {
+                                                        //         this.setState({ comment: response.data })
+                                                        //     })
+                                                    })
+                                            }}>Activer</MDBBtn>)
+                                        }
+                                    </td>
                                 </tr>
                             ))
                         ) : (
