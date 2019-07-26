@@ -128,7 +128,6 @@ class Login extends React.Component {
                                                 </div>
                                             </form>
                                             
-                                            <center><MDBNavLink rel="noopener noreferrer" className="autre nav-link Ripple-parent" to='/register'>S'inscrire</MDBNavLink></center>
                                         </div>
                                     </div>
                                 </div>
