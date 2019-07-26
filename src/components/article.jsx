@@ -123,7 +123,7 @@ class Article extends React.Component {
                                         <p id="description" onChange={this.handleChange}>{user.description}</p>
                                         <p>
                                             {/* SUPPRESSION */}
-                                            <button className="btn btn-danger"
+                                            {/* <button className="btn btn-danger"
                                                 onClick={() => {
                                                     confirmAlert({
                                                         customUI: ({ onClose }) => {
@@ -156,7 +156,7 @@ class Article extends React.Component {
                                                 }
                                                 }
                                             >X</button>
-                                            <a>&nbsp;</a>
+                                            <a>&nbsp;</a> */}
                                             {/* MODIFICATION */}
                                             <button className="btn btn-success"
                                                 onClick={() => {
