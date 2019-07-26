@@ -162,7 +162,6 @@ class Home extends React.Component {
                         </MDBCarouselInner>
                     </MDBCarousel>
                     </center>
-
                 </div>
                 {/* {this.renderRedirect()} */}
 {/* 
