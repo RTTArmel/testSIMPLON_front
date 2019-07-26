@@ -87,14 +87,12 @@ class Home extends React.Component {
         axios.get("https://tsiorytahback.herokuapp.com/profil").then(res => {
             // axios.get("http://localhost:8080/profil").then(res => {
             var tab = []
-            console.log('res.data: ', res.data);
             for (let i = 0; i < res.data.length; i++) {
                 if (res.data[i].active == true && res.data[i].reserve < res.data[i].disponible) {
                     tab.push(res.data[i])
                 }
             }
             this.setState({ comment: tab })
-            console.log('state comment: ', this.state.comment)
         })
     }
 
@@ -114,9 +112,9 @@ class Home extends React.Component {
                                 <MDBNavItem>
                                     <MDBNavLink to="/login" className="accueil">Connexion</MDBNavLink>
                                 </MDBNavItem>
-                                <MDBNavItem>
+                                {/* <MDBNavItem>
                                     <MDBNavLink to="/register" className="accueil">Créer Compte</MDBNavLink>
-                                </MDBNavItem>
+                                </MDBNavItem> */}
                             </MDBNavbarNav>
                         </MDBCollapse>
 
