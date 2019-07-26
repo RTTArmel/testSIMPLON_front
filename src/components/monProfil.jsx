@@ -3,7 +3,6 @@ import { Route, Switch } from 'react-router-dom';
 import Profil from './profil.jsx';
 import EditProfil from './editProfil.jsx';
 import { MDBNavbar, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBListGroupItem, MDBIcon } from 'mdbreact';
-import { NavLink } from 'react-router-dom';
 
 const MonProfil = () => {
     return (

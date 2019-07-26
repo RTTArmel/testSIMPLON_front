@@ -25,30 +25,6 @@ class Home extends React.Component {
             pwd: ''
         };
         this.handleChange = this.handleChange.bind(this)
-        this.enregistrement = this.enregistrement.bind(this)
-    }
-
-    // enregistrement(e) {
-    //     const action = { type: "INSCRIRE", value: e }
-    //     this.props.dispatch(action)
-    // }
-
-    enregistrement(e) {
-        const data = new FormData()
-        data.append('nom', this.state.nom);
-        data.append('prenom', this.state.prenom);
-        data.append('telephone', this.state.telephone);
-        data.append('email', this.state.email);
-
-        console.log('article id: ', article._id);
-
-        fetch('https://tsiorytahback.herokuapp.com/particulier' + article._id, {
-            // fetch('http://localhost:8080/profil', {
-            method: 'POST',
-            body: data,
-        }).then((response) => {
-            console.log('body respopnse: ', response);
-        });
     }
 
     toggle = () => {
@@ -72,14 +48,12 @@ class Home extends React.Component {
         axios.get("https://tsiorytahback.herokuapp.com/profil").then(res => {
             // axios.get("http://localhost:8080/profil").then(res => {
             var tab = []
-            console.log('res.data: ', res.data);
             for (let i = 0; i < res.data.length; i++) {
                 if (res.data[i].active == true && res.data[i].reserve < res.data[i].disponible) {
                     tab.push(res.data[i])
                 }
             }
             this.setState({ comment: tab })
-            console.log('state comment: ', this.state.comment)
         })
     }
 
@@ -121,7 +95,7 @@ class Home extends React.Component {
                     </MDBNavbar>
 
                     <center>
-                    <MDBCarousel id="slide"
+                    <MDBCarousel id="slider"
                         activeItem={1}
                         length={4}
                         showControls={true}
@@ -234,20 +208,18 @@ class Home extends React.Component {
                                                                                         data.append('prenom', this.state.prenom);
                                                                                         data.append('telephone', this.state.telephone);
                                                                                         data.append('email', this.state.email);
-
-                                                                                        console.log('article id: ', article._id);
-
+                                                                                        data.append('atelier', article._id);
                                                                                         fetch('https://tsiorytahback.herokuapp.com/particulier/' + article._id, {
                                                                                             // fetch('http://localhost:8080/profil', {
                                                                                             method: 'POST',
                                                                                             body: data,
                                                                                         }).then((response) => {
-                                                                                            console.log('body respopnse: ', response);
+                                                                                            console.log(response);
                                                                                         });
                                                                                         onClose();
                                                                                     }
                                                                                     }
-                                                                                >OUI</button>
+                                                                                >Valider</button>
                                                                             </center>
                                                                         </td>
                                                                     </table>
