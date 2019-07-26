@@ -147,6 +147,7 @@ function connexion(state = initialState, action) {
           console.log("post ok: res.data ", response.data);
 
           //DEBUT TEST
+          if(response.date!=="erreur")
           axios.get('https://tsiorytahback.herokuapp.com/profil/')
             .then(res => {
               for (let i = 0; i < res.data.length; i++) {

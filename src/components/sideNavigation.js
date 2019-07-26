@@ -55,7 +55,7 @@ class SideNavigation extends Component {
                 <NavLink id="lien-dasboard" to="/" >
                     <MDBListGroupItem  id='MDBListGroup'>
                         <MDBIcon icon="home" className="mr-3" />
-                        Accueil ExtraComm
+                        Accueil ExtraCOOK
                     </MDBListGroupItem>
                 </NavLink>
             </MDBListGroup>
