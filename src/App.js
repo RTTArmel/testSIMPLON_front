@@ -13,19 +13,16 @@ import Upload from './components/postupload'
 
 function App() {
   return (
-    <div className="">
+    <div>
       <Provider store={Store}>
         <Router>
           <div>
             <Route exact path="/" component={Accueil} />
-            {/* <div> */}
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
-              {/* <Route path="/article/:id" component={Article } /> */}
               <Route path="/admin" component={Admin} />
               <Route path="/upload" component={Upload} />
               <Route path="/article" component={Article} />
-            {/* </div> */}
           </div>
         </Router>
       </Provider>

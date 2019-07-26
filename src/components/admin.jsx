@@ -17,10 +17,7 @@ class Admin extends React.Component {
   renderRedirect = () => {
     if (localStorage.getItem('login') == 'false') {
       return <Redirect to='/login' />
-    } else {
-      console.log('test');
     }
-
   }
 
   listeArticle = (e) => {
@@ -29,11 +26,8 @@ class Admin extends React.Component {
   }
 
   render() {
-    const style = {
-      fontFamily: 'Verdana !important'
-    }
     return (
-      <div style={{ style }}>
+      <div>
         <div className="flexible-content accueil">
           {this.renderRedirect()}
           <SideNavigation />

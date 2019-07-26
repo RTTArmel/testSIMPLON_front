@@ -56,7 +56,6 @@ class EditProfil extends React.Component {
                         <MDBBtn gradient="purple" className="button" id="boutton"  onClick={e => {
                     e.preventDefault()
                     this.toggle()
-                    console.log('local enregistrement: ', localStorage.getItem('login'));
                     this.enregistrement({
                         nom: this.state.nom,
                         prenom: this.state.prenom,

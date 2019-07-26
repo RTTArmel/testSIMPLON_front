@@ -29,7 +29,6 @@ class Login extends React.Component {
     }
 
     login(e) {
-        console.log('local login: ', localStorage.getItem('login'));
         const action = { type: "LOGIN", value: e }
         this.props.dispatch(action)
     }

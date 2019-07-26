@@ -132,7 +132,6 @@ class Register extends React.Component {
                                                         <p id='pass'></p>
                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<MDBBtn className="button" ronded='true' id="boutton" onClick={e => {
                                                             e.preventDefault()
-                                                            console.log('local enregistrement: ', localStorage.getItem('login'));
                                                             this.enregistrement({
                                                                 nom: this.state.nom,
                                                                 prenom: this.state.prenom,

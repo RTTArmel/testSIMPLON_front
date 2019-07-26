@@ -26,7 +26,6 @@ class Article extends React.Component {
             modal: false,
         };
         this.handleChange = this.handleChange.bind(this)
-        this.suppr = this.suppr.bind(this)
         this.toggle = this.toggle.bind(this)
     }
 
@@ -48,7 +47,6 @@ class Article extends React.Component {
         data.append('reserve', 0);
         data.append('disponible', this.state.disponible);
         data.append('active', this.state.active)
-        console.log('local atelier', localStorage.getItem('atelier'));
 
         fetch('https://tsiorytahback.herokuapp.com/profil/' + localStorage.getItem('atelier'), {
             // fetch('http://localhost:8080/profil', {
@@ -56,8 +54,6 @@ class Article extends React.Component {
             body: data,
         }).then((response) => {
             response.json().then((body) => {
-                console.log('body: ', body);
-
                 this.setState({
                     // image: `http://localhost:8080/profil/${body.image}`,
                     image: `https://tsiorytahback.herokuapp.com/profil/${body.titre}` + localStorage.getItem('atelier') + '.jpg',
@@ -79,41 +75,29 @@ class Article extends React.Component {
         }, 1000)
     }
 
-    suppr(e) {
-        axios.delete('https://tsiorytahback.herokuapp.com/profil/' + localStorage.getItem('atelier'))
-        .then(console.log('delete ok'))
-        .catch(console.log('delete ko'))
-    }
-
     componentDidMount() {
         var tab = []
-        console.log('props: ', this.props)
         axios.get("https://tsiorytahback.herokuapp.com/profil").then(res => {
             // axios.get("http://localhost:8080/profil").then(res => {
-            console.log('res comment: ', res.data)
             for (let i = 0; i < res.data.length; i++) {
                 if (localStorage.getItem('id') == res.data[i].utilisateur) {
                     tab.push(res.data[i])
                 }
             }
             this.setState({ comment: tab })
-            console.log('comment: ', this.state.comment)
         })
     }
 
     componentDidUpdate() {
         var tab = []
-        console.log('props: ', this.props)
         axios.get("https://tsiorytahback.herokuapp.com/profil").then(res => {
             // axios.get("http://localhost:8080/profil").then(res => {
-            console.log('res comment: ', res.data)
             for (let i = 0; i < res.data.length; i++) {
                 if (localStorage.getItem('id') == res.data[i].utilisateur) {
                     tab.push(res.data[i])
                 }
             }
             this.setState({ comment: tab })
-            console.log('comment: ', this.state.comment)
         })
     }
 
@@ -176,8 +160,6 @@ class Article extends React.Component {
                                             {/* MODIFICATION */}
                                             <button className="btn btn-success"
                                                 onClick={() => {
-                                                    console.log('id atelier: ', user._id);
-
                                                     localStorage.setItem('atelier', user._id)
                                                     confirmAlert({
                                                         customUI: ({ onClose }) => {

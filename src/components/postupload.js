@@ -31,7 +31,6 @@ class PostFrontToBack extends React.Component {
         this.setState({
             modal: !this.state.modal,
         })
-        console.log('modal', this.state.modal);
         if (this.state.modal) {
             return <Redirect exact to='/admin/article' />
         }
@@ -42,7 +41,6 @@ class PostFrontToBack extends React.Component {
         this.setState({
             modal: !this.state.modal,
         });
-        console.log('modal', this.state.modal);
     }
 
     handleChange(event) {
@@ -71,10 +69,8 @@ class PostFrontToBack extends React.Component {
             method: 'POST',
             body: data,
         }).then((response) => {
-            console.log('body respopnse: ', response);
-
+            console.log(response);
             response.json().then((body) => {
-                console.log('body body: ', body);
                 this.setState({
                     image: `https://tsiorytahback.herokuapp.com/profil/${body.image}`,
                 });
@@ -120,7 +116,6 @@ class PostFrontToBack extends React.Component {
                     <MDBContainer>
                         <MDBBtn className="button" id="boutton" onClick={() => {
                             this.toggle()
-                            console.log('modal', this.state.modal);
                         }}>Ajouter</MDBBtn>
                         <MDBModal isOpen={this.state.modal}>
                             <MDBModalHeader>Enregistrement...</MDBModalHeader>

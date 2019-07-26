@@ -65,3 +65,10 @@ background-repeat: repeat-y;
   width: 100% !important;
   background-color: #f3671f !important;
 }
+
+#slider{
+  width: 100% !important;
+  height: auto !important;
+  margin-top: 0% !important;
+  opacity: 1 !important;
+}
