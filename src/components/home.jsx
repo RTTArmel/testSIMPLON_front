@@ -179,7 +179,7 @@ class Home extends React.Component {
                                     <div class="card-body">
                                         <center>
                                             <h5 class="card-title">{article.titre}</h5>
-                                            <p class="test">Description: {article.description}</p>
+                                            <p class="test">Description: <br /><center> {article.description}</center></p>
                                             <p class="test">Prix: {article.prix}</p>
                                             <p className="test">Place disponible: {article.reserve}/{article.disponible}</p>
                                             <MDBBtn rounded className="button" id="boutton" onClick={e => {
