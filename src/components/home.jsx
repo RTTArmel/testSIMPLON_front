@@ -206,6 +206,7 @@ class Home extends React.Component {
                                                                             <center>
                                                                                 <button className="btn btn-dark"
                                                                                     onClick={() => {
+                                                                                        if (this.state.email != ""){
                                                                                         const data = new FormData()
                                                                                         data.append('nom', this.state.nom);
                                                                                         data.append('prenom', this.state.prenom);
@@ -220,7 +221,8 @@ class Home extends React.Component {
                                                                                             console.log(response);
                                                                                         });
                                                                                         onClose();
-                                                                                    }
+                                                                                        }
+                                                                                        }
                                                                                     }
                                                                                 >Valider</button>
                                                                             </center>
